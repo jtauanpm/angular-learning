@@ -1,0 +1,45 @@
+<h1>{{ title }}</h1>
+
+<div class="calc">
+    <input [value]="field" type="text" readonly id="field">
+    <table>
+        <tr>
+            <td><button class="btn-calc" (click)="clean()">C</button></td>
+            <td><button id="btn-back" class="btn-calc" (click)="back()">&larr;</button></td>
+            <td colspan="2"><button class="btn-calc two-col" (click)="add('/')">&divide;</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-calc" (click)="add('7')">7</button></td> 
+            <td><button class="btn-calc" (click)="add('8')">8</button></td>
+            <td><button class="btn-calc" (click)="add('9')">9</button></td>
+            <td><button class="btn-calc" (click)="add('*')">*</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-calc" (click)="add('4')">4</button></td>
+            <td><button class="btn-calc" (click)="add('5')">5</button></td>
+            <td><button class="btn-calc" (click)="add('6')">6</button></td>
+            <td><button class="btn-calc" (click)="add('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-calc" (click)="add('1')">1</button></td>
+            <td><button class="btn-calc" (click)="add('2')">2</button></td>
+            <td><button class="btn-calc" (click)="add('3')">3</button></td>
+            <td><button class="btn-calc" (click)="add('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn-calc" (click)="add('.')">.</button></td>
+            <td><button class="btn-calc" (click)="add('0')">0</button></td>
+            <td colspan="2"><button class="btn-calc two-col" (click)="calculate()">=</button></td>
+        </tr>
+    </table>
+</div>
+
+
+<button id="btn-history" (click)="showHistory()">Show History</button>
+<div *ngIf="historic" id="historic" >
+    <button [disabled]="historicList.length === 0" class="button" id="clear-btn" (click)="cleanHistory()">Clear</button>
+    <p class="center" *ngIf="historicList.length == 0"> <small>Nothing To Show</small></p>
+    <ul>
+        <li *ngFor="let historic of historicList">{{ historic.expression }} = {{historic.result}}</li>
+    </ul>
+</div>

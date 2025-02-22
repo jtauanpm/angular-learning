@@ -1,0 +1,111 @@
+h1{
+    position: absolute;
+    top: 8%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    padding-top: 2%;
+}
+
+.calc {   
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.btn-calc{
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    margin: 3px;
+    background-color: rgb(31,31,31);
+    border: none;
+    color: #fff;
+    border-radius: 7px;
+}
+
+.btn-calc:hover{
+    background-color: black;
+}
+
+.two-col{
+    width: 95%;
+}
+
+.button {
+    background-color: #000;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 30px;
+    font-size: 1em;
+    font-weight: 20;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#field{
+    background-color: white;
+    width: 212px;
+    height: 30px;
+    margin: 5px;
+    font-size: 25px;
+    color: black;
+    text-align: right;
+    padding: 7px;
+}
+
+#historic{
+    margin-top: 1%;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 40px;
+    height: 80%;
+    width: 15%;
+    position: fixed;
+    right: 10%;
+    padding-top: 0%;
+    box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+
+#clear-btn{
+    margin-top: 2.5%;
+    margin-left: 70px;
+    margin-right: 20px;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+#clear-btn:hover{
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+#clear-btn:disabled{
+    background-color: #ccc;
+}
+
+#btn-history{
+    cursor: pointer;
+    position: relative;
+    left: 77.8%;
+    margin-top: 3%;
+    background-color: #000;
+    border: none;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 30px;
+    font-size: 1.18em;
+}
+
+#btn-history:hover{
+    opacity: 0.85;
+    transition: opacity 0.3s;
+}

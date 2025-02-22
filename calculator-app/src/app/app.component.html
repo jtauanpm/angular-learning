@@ -1,0 +1,3 @@
+<sidebar (linkClicked)="changeMode($event)"></sidebar>
+<app-home *ngIf="mode == 'home'"></app-home>
+<app-calculator *ngIf="mode == 'calculator'"></app-calculator>
