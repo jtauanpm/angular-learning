@@ -1,0 +1,108 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Mouse Microsoft",
+      "value": 15.9,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "mouse.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Teclado Microsoft",
+      "value": 30.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "teclado.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Monitor Samsung",
+      "value": 250.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "monitor.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Laptop Asus",
+      "value": 3000.0,
+      "promotional": true,
+      "promotionalValue": 2800.0,
+      "image": "laptop.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Fone JBL",
+      "value": 150.0,
+      "promotional": true,
+      "promotionalValue": 120.0,
+      "image": "fone.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Cadeira Gamer",
+      "value": 900.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "cadeira.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Impressora HP",
+      "value": 600.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "impressora.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Webcam Logitech",
+      "value": 350.0,
+      "promotional": true,
+      "promotionalValue": 300.0,
+      "image": "webcam.jpg"
+    },
+    {
+      "id": 9,
+      "name": "HD Externo 1TB",
+      "value": 400.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "hd.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Pendrive 64GB",
+      "value": 60.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "pendrive.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Smartphone Samsung",
+      "value": 1500.0,
+      "promotional": true,
+      "promotionalValue": 1400.0,
+      "image": "smartphone.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Tablet Apple",
+      "value": 4000.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "tablet.jpg"
+    }
+  ],
+
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
+}
