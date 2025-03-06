@@ -9,14 +9,23 @@
                 </a>
                 <h4 class="card-title">{{ product.name | titlecase }}</h4>
                 
+                <div [ngSwitch]="product.promotional">
+                    <p *ngSwitchCase="true">Promoção!</p>
+                    <p *ngSwitchCase="false">Por apenas:</p>
+                </div>
+
                 <div class="card-body">
                     @if (product.promotional) {
-                        <div><h4 class="card-text">De:
-                            <small><del>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del></small>
-                            Por: {{ product.promotionalValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
-                        </h4></div>
+                        <div>
+                            <h4 class="card-text">De:
+                                <small><del>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del></small>
+                                Por: {{ product.promotionalValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                            </h4>
+                        </div>
                     }@else {
-                        <div><h4>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h4></div>
+                        <div>
+                            <h4>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h4>
+                        </div>
                     }
                     
                 </div>
