@@ -2,7 +2,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Mouse Microsoft",
+      "name": "mouse Microsoft",
       "value": 15.9,
       "promotional": false,
       "promotionalValue": 0,
@@ -29,80 +29,49 @@
       "name": "Laptop Asus",
       "value": 3000.0,
       "promotional": true,
-      "promotionalValue": 2800.0,
+      "promotionalValue": 999.9,
       "image": "laptop.jpg"
     },
     {
       "id": 5,
-      "name": "Fone JBL",
-      "value": 150.0,
-      "promotional": true,
-      "promotionalValue": 120.0,
-      "image": "fone.jpg"
+      "name": "Headset Microsoft",
+      "value": 10.5,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "headset.jpg"
     },
     {
       "id": 6,
-      "name": "Cadeira Gamer",
-      "value": 900.0,
-      "promotional": false,
-      "promotionalValue": 0,
-      "image": "cadeira.jpg"
-    },
-    {
-      "id": 7,
-      "name": "Impressora HP",
-      "value": 600.0,
-      "promotional": false,
-      "promotionalValue": 0,
-      "image": "impressora.jpg"
-    },
-    {
-      "id": 8,
       "name": "Webcam Logitech",
-      "value": 350.0,
+      "value": 90.0,
       "promotional": true,
-      "promotionalValue": 300.0,
+      "promotionalValue": 49.99,
       "image": "webcam.jpg"
     },
     {
+      "id": 7,
+      "name": "Galaxy S10+",
+      "value": 3000.0,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "celular.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Mousepad Microsoft",
+      "value": 5.5,
+      "promotional": false,
+      "promotionalValue": 0,
+      "image": "mousepad.jpg"
+    },
+    {
       "id": 9,
-      "name": "HD Externo 1TB",
-      "value": 400.0,
+      "name": "Go Pro 8",
+      "value": 300.0,
       "promotional": false,
       "promotionalValue": 0,
-      "image": "hd.jpg"
-    },
-    {
-      "id": 10,
-      "name": "Pendrive 64GB",
-      "value": 60.0,
-      "promotional": false,
-      "promotionalValue": 0,
-      "image": "pendrive.jpg"
-    },
-    {
-      "id": 11,
-      "name": "Smartphone Samsung",
-      "value": 1500.0,
-      "promotional": true,
-      "promotionalValue": 1400.0,
-      "image": "smartphone.jpg"
-    },
-    {
-      "id": 12,
-      "name": "Tablet Apple",
-      "value": 4000.0,
-      "promotional": false,
-      "promotionalValue": 0,
-      "image": "tablet.jpg"
+      "image": "gopro.jpg"
     }
   ],
-
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ]
+  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }]
 }
