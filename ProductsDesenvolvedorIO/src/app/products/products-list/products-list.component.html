@@ -18,7 +18,9 @@
                     @if (product.promotional) {
                         <div>
                             <h4 class="card-text">De:
-                                <small><del>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del></small>
+                                <small>
+                                    <del>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del>
+                                </small>
                                 Por: {{ product.promotionalValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
                             </h4>
                         </div>

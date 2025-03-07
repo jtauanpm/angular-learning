@@ -23,6 +23,6 @@ export class ProductsListComponent implements OnInit {
           next: products => this.products = products,
           error: err => console.log(err)
         }
-      )
+      );
   }
 }
