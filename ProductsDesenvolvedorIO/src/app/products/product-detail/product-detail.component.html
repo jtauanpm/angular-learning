@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <div class="card">
+    <img [src]="'assets/' + product.image" class="card-img-top" alt="{{ product.name }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name | titlecase }}</h5>
+      <p class="card-text">
+        <strong>Preço:</strong> 
+        <span *ngIf="product.promotional; else normalPrice" class="text-danger">
+          R$ {{ product.promotionalValue | currency:'BRL' }}
+        </span>
+        <ng-template #normalPrice>
+          R$ {{ product.value | currency:'BRL' }}
+        </ng-template>
+      </p>
+    </div>
+  </div>
+</div>
+
