@@ -6,10 +6,10 @@
       <p class="card-text">
         <strong>Preço:</strong> 
         <span *ngIf="product.promotional; else normalPrice" class="text-danger">
-          R$ {{ product.promotionalValue | currency:'BRL' }}
+          {{ product.promotionalValue | currency:'BRL' }}
         </span>
         <ng-template #normalPrice>
-          R$ {{ product.value | currency:'BRL' }}
+          {{ product.value | currency:'BRL' }}
         </ng-template>
       </p>
     </div>
