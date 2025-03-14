@@ -40,6 +40,15 @@ export class CadastroComponent implements OnInit {
     }else{
       this.formResult = "Formulário inválido!"
     }
-    
+  }
+
+  formControlTemErro(nome: string, tipoErro?: string): boolean{
+    const campo = this.cadastroForm.get(nome);
+    const foiMexido: boolean = !!(campo?.touched || campo?.dirty);
+
+    if(tipoErro === undefined)
+      return !!(campo?.errors && foiMexido);
+    else
+      return !!(campo?.getError(tipoErro) && foiMexido)
   }
 }

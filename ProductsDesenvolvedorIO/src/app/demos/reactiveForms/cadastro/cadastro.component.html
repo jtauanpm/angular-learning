@@ -6,9 +6,14 @@
             <div class="form-group mb-3">
                 <label class="col-md-2 control-label" for="nome">Nome Completo</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="nome" placeholder="Nome (requerido)" formControlName="nome" 
-                    [ngClass]="{'is-invalid': cadastroForm.get('nome')?.errors && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)}">
-                    <span class="text-danger" *ngIf="cadastroForm.get('nome')?.errors && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="nome" 
+                        placeholder="Nome (requerido)" 
+                        formControlName="nome" 
+                        [ngClass]="{'is-invalid': formControlTemErro('nome')}">
+                    <span class="text-danger" *ngIf="formControlTemErro('nome')">
                         <p>Preencha o campo nome</p>
                     </span>
                 </div>
@@ -25,10 +30,10 @@
                 <label class="col-md-2 control-label" for="email">E-mail</label>
                 <div class="col-md-10">
                     <input type="email" class="form-control" id="email" placeholder="E-mail (requerido)" formControlName="email">
-                    <span class="text-danger" *ngIf="cadastroForm.get('email')?.errors?.['required'] && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)">
+                    <span class="text-danger" *ngIf="formControlTemErro('email', 'required')">
                         <p>Preencha o campo E-mail</p>
                     </span>
-                    <span class="text-danger" *ngIf="cadastroForm.get('email')?.errors?.['email'] && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)">
+                    <span class="text-danger" *ngIf="formControlTemErro('email', 'email')">
                         <p>E-mail inválido</p>
                     </span>
                 </div>
