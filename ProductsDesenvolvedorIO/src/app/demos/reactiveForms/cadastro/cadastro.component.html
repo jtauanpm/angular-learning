@@ -22,7 +22,10 @@
             <div class="form-group mb-3">
                 <label class="col-md-2 control-label" for="cpf">CPF</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="cpf" placeholder="CPF (requerido)" formControlName="cpf">
+                    <input type="text" class="form-control" id="cpf" placeholder="CPF (requerido)" formControlName="cpf" mask="000.000.000-00">
+                    <span class="text-danger" *ngIf="formControlTemErro('cpf')">
+                        <p>CPF inválido</p>
+                    </span>
                 </div>
             </div>
 
@@ -43,6 +46,9 @@
                 <label class="col-md-2 control-label" for="senha">Senha</label>
                 <div class="col-md-10">
                     <input type="password" class="form-control" id="senha" placeholder="Senha (requerido)" formControlName="senha">
+                    <span class="text-danger" *ngIf="formControlTemErro('senha')">
+                        <p>Tamanho inválido (deve ter entre 6 e 15 caracteres)</p>
+                    </span>
                 </div>
             </div>
 
@@ -50,6 +56,9 @@
                 <label class="col-md-2 control-label" for="confirmar-senha">Confirmar Senha</label>
                 <div class="col-md-10">
                     <input type="password" class="form-control" id="confirmar-senha" placeholder="Confirme sua senha" formControlName="senhaConfirmacao">
+                    <span class="text-danger" *ngIf="cadastroForm.get('senhaConfirmacao')?.touched && cadastroForm.hasError('passwordsMismatch')">
+                        <p>As senhas não coincidem.</p>
+                    </span>
                 </div>
             </div>
 
