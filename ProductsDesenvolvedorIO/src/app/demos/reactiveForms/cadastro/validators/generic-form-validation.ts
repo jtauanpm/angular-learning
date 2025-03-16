@@ -3,11 +3,11 @@ import { FormGroup } from "@angular/forms";
 export class GenericValidator {
   constructor(private validationMessages: ValidationMessages) {}
 
-  processarMensagens(container: FormGroup): { [key: string]: string } {
+  processarMensagens(formGroup: FormGroup): { [key: string]: string } {
     let messages: { [key: string]: string } = {};
-    for (let controlKey in container.controls) {
-      if (container.controls.hasOwnProperty(controlKey)) {
-        let c = container.controls[controlKey];
+    for (let controlKey in formGroup.controls) {
+      if (formGroup.controls.hasOwnProperty(controlKey)) {
+        let c = formGroup.controls[controlKey];
 
         if (c instanceof FormGroup) {
           let childMessages = this.processarMensagens(c);
@@ -32,7 +32,7 @@ export class GenericValidator {
 }
 
 export interface DisplayMessage {
-    [key: string]: string
+  [key: string]: string
 }
 
 export interface ValidationMessages {
