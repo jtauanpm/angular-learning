@@ -10,11 +10,10 @@
                         type="text" 
                         class="form-control" 
                         id="nome" 
-                        placeholder="Nome (requerido)" 
                         formControlName="nome" 
-                        [ngClass]="{'is-invalid': formControlTemErro('nome')}">
-                    <span class="text-danger" *ngIf="formControlTemErro('nome')">
-                        <p>Preencha o campo nome</p>
+                        [ngClass]="{'is-invalid': displayMessage['nome']}">
+                    <span class="text-danger" *ngIf="displayMessage['nome']">
+                        <p [innerHTML]="displayMessage['nome']"></p>
                     </span>
                 </div>
             </div>
@@ -22,9 +21,9 @@
             <div class="form-group mb-3">
                 <label class="col-md-2 control-label" for="cpf">CPF</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="cpf" placeholder="CPF (requerido)" formControlName="cpf" mask="000.000.000-00">
-                    <span class="text-danger" *ngIf="formControlTemErro('cpf')">
-                        <p>CPF inválido</p>
+                    <input type="text" class="form-control" id="cpf" formControlName="cpf" mask="000.000.000-00" [ngClass]="{'is-invalid': displayMessage['cpf']}">
+                    <span class="text-danger" *ngIf="displayMessage['cpf']">
+                        <p [innerHTML]="displayMessage['cpf']"></p>
                     </span>
                 </div>
             </div>
@@ -32,12 +31,9 @@
             <div class="form-group mb-3">
                 <label class="col-md-2 control-label" for="email">E-mail</label>
                 <div class="col-md-10">
-                    <input type="email" class="form-control" id="email" placeholder="E-mail (requerido)" formControlName="email" [ngClass]="{'is-invalid': formControlTemErro('email')}">
-                    <span class="text-danger" *ngIf="formControlTemErro('email', 'required')">
-                        <p>Preencha o campo E-mail</p>
-                    </span>
-                    <span class="text-danger" *ngIf="formControlTemErro('email', 'email')">
-                        <p>E-mail inválido</p>
+                    <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': displayMessage['email']}">
+                    <span class="text-danger" *ngIf="displayMessage['email']">
+                        <p [innerHTML]="displayMessage['email']"></p>
                     </span>
                 </div>
             </div>
@@ -45,9 +41,9 @@
             <div class="form-group mb-3">
                 <label class="col-md-2 control-label" for="senha">Senha</label>
                 <div class="col-md-10">
-                    <input type="password" class="form-control" id="senha" placeholder="Senha (requerido)" formControlName="senha">
-                    <span class="text-danger" *ngIf="formControlTemErro('senha')">
-                        <p>Tamanho inválido (deve ter entre 6 e 15 caracteres)</p>
+                    <input type="password" class="form-control" id="senha" formControlName="senha" [ngClass]="{'is-invalid': displayMessage['senha']}">
+                    <span class="text-danger" *ngIf="displayMessage['senha']">
+                        <p [innerHTML]="displayMessage['senha']"></p>
                     </span>
                 </div>
             </div>
@@ -55,7 +51,10 @@
             <div class="form-group mb-3">
                 <label class="col-md-2 control-label" for="confirmar-senha">Confirmar Senha</label>
                 <div class="col-md-10">
-                    <input type="password" class="form-control" id="confirmar-senha" placeholder="Confirme sua senha" formControlName="senhaConfirmacao">
+                    <input type="password" class="form-control" id="confirmar-senha" formControlName="senhaConfirmacao" [ngClass]="{'is-invalid': displayMessage['senhaConfirmacao']}">
+                    <span class="text-danger" *ngIf="displayMessage['senhaConfirmacao']">
+                        <p [innerHTML]="displayMessage['senhaConfirmacao']"></p>
+                    </span>
                     <span class="text-danger" *ngIf="cadastroForm.get('senhaConfirmacao')?.touched && cadastroForm.hasError('passwordsMismatch')">
                         <p>As senhas não coincidem.</p>
                     </span>
