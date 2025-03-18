@@ -1,43 +1,5 @@
 <div class="container main-container">
     <div class="row text-center">
-        <div *ngFor="let product of products" class="col-md-4" style="padding-bottom: 30px;">
-            <div class="card h-100">
-                <a class="text-decoration-none" [routerLink]="['/product-detail', product.id]">
-                    <div style="align-content:center;">
-                        <img src="/assets/{{ product.image }}" height="164px" width="253px" alt="{{product.image}}">
-                    </div>
-                </a>
-                <h4 class="card-title">{{ product.name | titlecase }}</h4>
-                
-                <div [ngSwitch]="product.promotional">
-                    <p *ngSwitchCase="true">Promoção!</p>
-                    <p *ngSwitchCase="false">Por apenas:</p>
-                </div>
-
-                <div class="card-body">
-                    @if (product.promotional) {
-                        <div>
-                            <h4 class="card-text">De:
-                                <small>
-                                    <del>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del>
-                                </small>
-                                Por: {{ product.promotionalValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
-                            </h4>
-                        </div>
-                    }@else {
-                        <div>
-                            <h4>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h4>
-                        </div>
-                    }
-                    
-                </div>
-
-                <div class="card-footer">
-                    <a class="btn btn-primary">
-                        <span class="fa fa-shopping-cart"></span> Comprar
-                    </a>
-                </div>
-            </div>
-        </div>
+        <app-product-card class="col-md-4" *ngFor="let product of products" [product]="product"></app-product-card>
     </div>
 </div>
