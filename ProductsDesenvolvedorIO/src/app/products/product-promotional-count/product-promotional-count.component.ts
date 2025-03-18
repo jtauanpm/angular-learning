@@ -1,0 +1,24 @@
+import { Component, Input } from '@angular/core';
+import { Product } from '../products.interface';
+
+@Component({
+  selector: "app-product-promotional-count",
+  imports: [],
+  template: `
+    <div>
+      <div>
+        Quantidade de produtos em promoção: {{ countPromotionalProducts() }} de
+        um total de {{ products.length }}
+      </div>
+    </div>
+  `,
+})
+export class ProductPromotionalCountComponent {
+  @Input() products!: Product[];
+
+  countPromotionalProducts(): number {
+    if (!this.products) return 0;
+
+    return this.products.filter((product) => product.promotional).length;
+  }
+}

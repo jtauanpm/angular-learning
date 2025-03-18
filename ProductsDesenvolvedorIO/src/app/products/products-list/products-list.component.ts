@@ -3,10 +3,11 @@ import { ProductsService } from '../products.service';
 import { Product } from '../products.interface';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductPromotionalCountComponent } from '../product-promotional-count/product-promotional-count.component';
 
 @Component({
   selector: 'app-products-list',
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, ProductPromotionalCountComponent],
   providers: [ProductsService],
   templateUrl: './products-list.component.html'
 })
