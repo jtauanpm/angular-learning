@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "mouse Microsoft",
       "value": 15.9,
       "promotional": false,
@@ -9,31 +9,31 @@
       "image": "mouse.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Teclado Microsoft",
-      "value": 30.0,
-      "promotional": false,
+      "value": 30,
+      "promotional": true,
       "promotionalValue": 0,
       "image": "teclado.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Monitor Samsung",
-      "value": 250.0,
-      "promotional": false,
+      "value": 250,
+      "promotional": true,
       "promotionalValue": 0,
       "image": "monitor.jpg"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Laptop Asus",
-      "value": 3000.0,
+      "value": 3000,
       "promotional": true,
       "promotionalValue": 999.9,
       "image": "laptop.jpg"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Headset Microsoft",
       "value": 10.5,
       "promotional": false,
@@ -41,23 +41,23 @@
       "image": "headset.jpg"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Webcam Logitech",
-      "value": 90.0,
+      "value": 90,
       "promotional": true,
       "promotionalValue": 49.99,
       "image": "webcam.jpg"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Galaxy S10+",
-      "value": 3000.0,
+      "value": 3000,
       "promotional": false,
       "promotionalValue": 0,
       "image": "celular.jpg"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Mousepad Microsoft",
       "value": 5.5,
       "promotional": false,
@@ -65,13 +65,19 @@
       "image": "mousepad.jpg"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Go Pro 8",
-      "value": 300.0,
+      "value": 300,
       "promotional": false,
       "promotionalValue": 0,
       "image": "gopro.jpg"
     }
   ],
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }]
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
 }

@@ -2,7 +2,7 @@ export interface Product {
     id: number;
     name: string;
     value: number;
-    promotional: string;
+    promotional: boolean;
     promotionalValue: string;
     image: string;
 };
