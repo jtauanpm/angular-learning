@@ -25,4 +25,9 @@ export class ProductsListComponent implements OnInit {
         }
       );
   }
+
+  togglePromotionalProduct(product: Product){
+    product.promotional = !product.promotional;
+    this.productsService.updateProduct(product.id, product).subscribe();
+  }
 }

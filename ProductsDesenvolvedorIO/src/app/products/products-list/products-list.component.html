@@ -4,6 +4,10 @@
     <app-product-promotional-count [products]="products"></app-product-promotional-count>
     
     <div class="row text-center">
-        <app-product-card class="col-md-4" *ngFor="let product of products" [product]="product"></app-product-card>
+        <app-product-card *ngFor="let product of products" 
+            class="col-md-4"  
+            [product]="product"
+            (status)="togglePromotionalProduct($event)">
+        </app-product-card>
     </div>
 </div>

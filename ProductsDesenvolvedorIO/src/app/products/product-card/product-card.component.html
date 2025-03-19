@@ -31,8 +31,10 @@
         </div>
 
         <div class="card-footer">
-            <a class="btn btn-primary">
-                Comprar
+            <a (click)="emitProduct()"
+                [ngClass]="product.promotional ? 
+                'btn btn-success' : 'btn btn-danger'">
+                 Promotional
             </a>
         </div>
     </div>

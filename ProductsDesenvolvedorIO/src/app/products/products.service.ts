@@ -17,4 +17,8 @@ export class ProductsService {
   getProductById(id: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.urlService}/${id}`);
   }
+
+  updateProduct(id: number, chnages: Partial<Product>): Observable<Product> {
+    return this.httpClient.patch<Product>(`${this.urlService}/${id}`, chnages);
+  }
 }
