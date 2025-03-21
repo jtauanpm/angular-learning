@@ -4,7 +4,16 @@ import { Observable, Observer } from 'rxjs';
 @Component({
   selector: "app-rxjs",
   imports: [],
-  template: ` <h1>Welcome to {{ title }}!</h1> `,
+  template: `
+    <div class="container main-container">
+      <div class="col-lg-12 text-center">
+        <h1 class="text-success">
+          Welcome to {{ title }}! <br />
+          The magic happens on the console :)
+        </h1>
+      </div>
+    </div>
+  `,
 })
 export class RXJSComponent implements OnInit {
   title = "RXJS";
