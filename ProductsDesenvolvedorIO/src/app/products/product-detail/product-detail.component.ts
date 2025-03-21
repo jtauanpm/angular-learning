@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductsService } from '../products.service';
-import { Product } from '../products.interface';
+import { Product } from '../../interfaces/product.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({

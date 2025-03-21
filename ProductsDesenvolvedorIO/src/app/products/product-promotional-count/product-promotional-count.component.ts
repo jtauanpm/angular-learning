@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../products.interface';
+import { Product } from '../../interfaces/product.interface';
 
 @Component({
   selector: "app-product-promotional-count",
