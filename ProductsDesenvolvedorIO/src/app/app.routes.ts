@@ -4,6 +4,7 @@ import { ContactComponent } from './institutional/contact/contact.component';
 import { AboutComponent } from './institutional/about/about.component';
 import { RXJSComponent } from './demos/rxjs/rxjs.component';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
+import { NotFoundComponent } from './navigation/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -12,11 +13,21 @@ export const routes: Routes = [
   { path: "about", component: AboutComponent },
   { path: "rxjs", component: RXJSComponent },
   { path: "cadastro", component: CadastroComponent },
-  { path: "databinding",
-    loadComponent: () => import('./demos/data-binding/data-binding.component')
-    .then(dataBinding => dataBinding.DataBindingComponent)},
-  { path: "products", 
-    loadChildren: () => import('./products/product.routes')
-    .then(routes => routes.PRODUCT_ROUTES) }
+  {
+    path: "databinding",
+    loadComponent: () =>
+      import("./demos/data-binding/data-binding.component").then(
+        (dataBinding) => dataBinding.DataBindingComponent
+      ),
+  },
+  {
+    path: "products",
+    loadChildren: () =>
+      import("./products/product.routes").then(
+        (routes) => routes.PRODUCT_ROUTES
+      ),
+  },
+
+  { path: "**", component: NotFoundComponent }
 ];
 
