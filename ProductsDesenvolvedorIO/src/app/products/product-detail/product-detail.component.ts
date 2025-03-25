@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../services/products.service';
 import { Product } from '../../interfaces/product.interface';
 import { CommonModule } from '@angular/common';
 
@@ -18,7 +18,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +33,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subRoutes.unsubscribe();
+  }
+
+  backPage(){
+    this.router.navigate(['/products']);
   }
 }
