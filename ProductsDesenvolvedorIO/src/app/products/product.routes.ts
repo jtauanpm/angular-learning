@@ -9,7 +9,7 @@ export const PRODUCT_ROUTES: Routes = [
     component: ProductAppComponent,
     children: [
       { path: "", component: ProductsListComponent },
-      { path: ":id", component: ProductDetailComponent },
+      { path: "detail/:id", component: ProductDetailComponent },
     ],
   },
 ];
