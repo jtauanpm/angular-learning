@@ -1,5 +1,5 @@
 import { ApplicationConfig, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withDebugTracing } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
@@ -12,7 +12,10 @@ const maskConfig: Partial<NgxMaskConfig> = {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(
+      routes
+      // withDebugTracing()
+    ),
     provideHttpClient(),
     provideEnvironmentNgxMask(maskConfig),
     { provide: LOCALE_ID, useValue: "pt-BR" },
