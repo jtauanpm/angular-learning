@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../services/products.service';
 import { Product } from '../../interfaces/product.interface';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductPromotionalCountComponent } from '../product-promotional-count/product-promotional-count.component';
 import { fromEvent, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-products-list",
@@ -23,7 +24,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   @ViewChild("title", { static: false }) titleComponent!: ElementRef;
   @ViewChildren(ProductCardComponent) cards!: QueryList<ProductCardComponent>;
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute) {}
 
   ngAfterViewInit(): void {
     // ViewChild promotionalCount
@@ -44,13 +45,9 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.productsService.getProducts()
-      .subscribe(
-        {
-          next: products => this.products = products,
-          error: err => console.log(err)
-        }
-      );
+    // this.activatedRoute.data.subscribe(({ products }) => (this.products = products));
+    this.products = this.activatedRoute.snapshot.data['products'];
+    console.log(this.activatedRoute.snapshot.data['test'])
   }
 
   togglePromotionalProduct(product: Product){

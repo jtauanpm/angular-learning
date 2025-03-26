@@ -4,6 +4,7 @@ import { provideRouter, withDebugTracing } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { NgxMaskConfig, provideEnvironmentNgxMask } from 'ngx-mask';
+import { ProductsResolve } from './products/services/product.resolve';
 
 const maskConfig: Partial<NgxMaskConfig> = {
   validation: false,
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideEnvironmentNgxMask(maskConfig),
     { provide: LOCALE_ID, useValue: "pt-BR" },
+    ProductsResolve
   ],
 };
 
