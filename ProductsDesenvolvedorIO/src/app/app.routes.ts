@@ -5,6 +5,7 @@ import { AboutComponent } from './institutional/about/about.component';
 import { RXJSComponent } from './demos/rxjs/rxjs.component';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
+import { AuthGuardCanActivate, AuthGuardCanMatch } from './services/app.guard';
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -27,7 +28,15 @@ export const routes: Routes = [
         (routes) => routes.PRODUCT_ROUTES
       ),
   },
-
-  { path: "**", component: NotFoundComponent }
+  {
+    path: "admin",
+    loadComponent: () =>
+      import("./admin/admin/admin.component").then(
+        (admin) => admin.AdminComponent
+      ),
+    canMatch: [AuthGuardCanMatch],
+    canActivate: [AuthGuardCanActivate],
+  },
+  { path: "**", component: NotFoundComponent },
 ];
 
