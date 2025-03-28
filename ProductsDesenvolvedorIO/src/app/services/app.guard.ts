@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, CanLoad, CanMatch, CanMatchFn, GuardResult, MaybeAsync, Route, RouterStateSnapshot, UrlSegment } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, CanDeactivateFn, CanLoad, CanMatch, CanMatchFn, GuardResult, MaybeAsync, Route, RouterStateSnapshot, UrlSegment } from "@angular/router";
+import { CadastroComponent } from "../demos/reactiveForms/cadastro/cadastro.component";
 
 export const user: any = {
   IsLoggedIn: true, IsAdmin: true
@@ -25,4 +26,13 @@ export const AuthGuardCanActivate: CanActivateFn = () => {
   console.log("canActivate");
   if (user.IsLoggedIn) return true;
   return false;
+};
+
+export const CadastroGuardCanDeactivate: CanDeactivateFn<CadastroComponent> = (component) => {
+  console.log("canDeactivate");
+  if (component.cadastroForm && component.cadastroForm.dirty && !component.wasSaved) {
+    return window.confirm('Tem certeza que deseja descartar as alterações do formulário?');
+  }
+
+  return true;
 };

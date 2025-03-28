@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Usuario } from './models/usuario.interface';
 import { CommonModule } from '@angular/common';
@@ -21,6 +21,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   cadastroForm!: FormGroup;
   usuario!: Usuario;
   formResult!: string;
+  wasSaved: boolean = false;
 
   validationMessages!: ValidationMessages;
   genericValidator: GenericValidator = new GenericValidator(this.validationMessages);
@@ -102,12 +103,14 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
 
   adicionarUsuario() {
-    // this.usuario = this.cadastroForm.getRawValue(); // retorna todos os valores do formulário, INCLUINDO campos desabilitados
-
     if (this.cadastroForm.valid) {
+      // retorna todos os valores do formulário, INCLUINDO campos desabilitados
+      // this.usuario = this.cadastroForm.getRawValue();
+
       // copia os valores do formulário para this.usuario, IGNORANDO campos desabilitados
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value);
       this.formResult = JSON.stringify(this.cadastroForm.value);
+      this.wasSaved = true;
     } else {
       this.formResult = "Formulário inválido!";
     }
