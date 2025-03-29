@@ -1,0 +1,28 @@
+<div class="container main-container">
+
+    <h1>Filmes</h1>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nome</th>
+                <th scope="col">Data Lançamento</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Tamanho Arquivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (movie of movies; track movie.name) {
+                <tr>
+                    <img [src]="movie.image" style="padding-bottom: 5px;">
+                    <td>{{ movie.name | titlecase }}</td>
+                    <td>{{ movie.releaseDate | date:"dd/MM/yyyy":"UTC" }}</td>
+                    <td>{{ movie.value | currency:'BRL':'symbol':'1.2-2':'pt'}}</td>
+                    <td>{{ movie.size | filesize }}</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
