@@ -15,6 +15,8 @@ export class NavbarComponent {
     { name: "Contato", path: "/contact" },
     { name: "Produtos", path: "/products" },
     { name: "Data Binding", path: "/databinding" },
-    { name: "RxJS", path: "/rxjs" }
+    { name: "RxJS", path: "/rxjs" },
+    { name: "Movies", path: "/movies" },
+    { name: "Admin", path: "/admin" },
   ];
 }

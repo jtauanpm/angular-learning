@@ -6,6 +6,7 @@ import { RXJSComponent } from './demos/rxjs/rxjs.component';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
 import { AuthGuardCanActivate, AuthGuardCanMatch, CadastroGuardCanDeactivate } from './services/app.guard';
+import { MoviesComponent } from './demos/pipes/movies/movies.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "about", component: AboutComponent },
   { path: "rxjs", component: RXJSComponent },
+  { path: "movies", component: MoviesComponent },
   {
     path: "cadastro",
     component: CadastroComponent,
