@@ -2,18 +2,20 @@ import { Component } from '@angular/core';
 import { Movie } from '../../../interfaces/movie.interface';
 import { CommonModule } from '@angular/common';
 import { FileSizePipe } from '../../../pipes/file-size.pipe';
+import { ImageFormaterPipe } from '../../../pipes/image.pipe';
 
 @Component({
   selector: "app-movies",
-  imports: [CommonModule, FileSizePipe],
+  imports: [CommonModule, FileSizePipe, ImageFormaterPipe],
+  providers: [ImageFormaterPipe],
   templateUrl: "./movies.component.html",
   styleUrl: "./movies.component.css",
 })
 export class MoviesComponent {
   movies!: Movie[];
-  // mapped: Filme[];
+  mapped!: Movie[];
 
-  constructor() {}
+  constructor(private imageFormat: ImageFormaterPipe) {}
 
   ngOnInit() {
     this.movies = [
@@ -54,14 +56,11 @@ export class MoviesComponent {
       },
     ];
 
-    // this.mapped = this.filmes.map((filme) => {
-    //   return {
-    //     name: filme.name,
-    //     releaseDate: filme.releaseDate,
-    //     value: filme.value,
-    //     size: filme.size,
-    //     image: this.imageFormat.transform(filme.image, "default", true),
-    //   };
-    // });
+    this.mapped = this.movies.map((movie) => {
+      return {
+        ...movie,
+        image: this.imageFormat.transform(movie.image, "assets/movies", true)
+      } as Movie;
+    });
   }
 }

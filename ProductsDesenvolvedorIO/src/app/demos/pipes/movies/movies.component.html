@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (movie of movies; track movie.name) {
+            @for (movie of mapped; track movie.name) {
                 <tr>
                     <img [src]="movie.image" style="padding-bottom: 5px;">
                     <td>{{ movie.name | titlecase }}</td>
@@ -22,7 +22,6 @@
                     <td>{{ movie.size | filesize }}</td>
                 </tr>
             }
-
         </tbody>
     </table>
 </div>
