@@ -3,7 +3,6 @@ import { BarService, BarServiceMock } from './bar.service';
 
 @Component({
   selector: 'app-bar',
-  imports: [],
   providers: [
     {provide: BarService, useClass: BarServiceMock}
   ],
