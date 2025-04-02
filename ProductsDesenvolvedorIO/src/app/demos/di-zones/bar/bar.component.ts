@@ -3,6 +3,7 @@ import { BarService, BarServiceMock } from './bar.service';
 
 @Component({
   selector: 'app-bar',
+  standalone: false,
   providers: [
     {provide: BarService, useClass: BarServiceMock}
   ],
@@ -10,7 +11,7 @@ import { BarService, BarServiceMock } from './bar.service';
 })
 export class BarComponent implements OnInit{
   public bebidas!: string;
-
+  
   constructor(private barService: BarService) {
   }
 
