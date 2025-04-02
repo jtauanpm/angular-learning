@@ -17,6 +17,7 @@ export class NavbarComponent {
     { name: "Data Binding", path: "/databinding" },
     { name: "RxJS", path: "/rxjs" },
     { name: "Movies", path: "/movies" },
+    { name: "Bar", path: "/bar-di-zones" },
     { name: "Admin", path: "/admin" },
   ];
 }
