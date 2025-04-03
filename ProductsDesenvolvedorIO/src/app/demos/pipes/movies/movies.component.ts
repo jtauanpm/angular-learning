@@ -6,7 +6,7 @@ import { ImageFormaterPipe } from '../../../pipes/image.pipe';
 
 @Component({
   selector: "app-movies",
-  imports: [CommonModule, FileSizePipe, ImageFormaterPipe],
+  imports: [CommonModule, FileSizePipe],
   providers: [ImageFormaterPipe],
   templateUrl: "./movies.component.html",
   styleUrl: "./movies.component.css",
