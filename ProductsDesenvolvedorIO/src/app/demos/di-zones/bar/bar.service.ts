@@ -1,20 +1,21 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, Injector } from "@angular/core";
+import { DI_ZONES_CONFIG, DiZonesConfig } from "../di-zones.config";
+
+export function BarFactory(http: HttpClient, injector: Injector): BarService {
+  return new BarService(http, injector.get(DI_ZONES_CONFIG));
+}
 
 @Injectable()
 export class BarService {
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    @Inject(DI_ZONES_CONFIG) private config: DiZonesConfig
   ) {}
 
-//   public obterUnidade(): string {
-//     return (
-//       "Unidade ID: " +
-//       this.config.unidadeId +
-//       " Token: " +
-//       this.config.unidadeToken
-//     );
-//   }
+  public obterUnidade(): string {
+    return ("Token: " + this.config.token);
+  }
 
   obterBebidas(): string {
     return "Bebidas";
@@ -41,4 +42,8 @@ export class BarServiceMock {
   obterRefeicoes(): string {
     return "Mock";
   }
+}
+
+export abstract class BebidasService {
+  abstract obterBebidas: () => string
 }
