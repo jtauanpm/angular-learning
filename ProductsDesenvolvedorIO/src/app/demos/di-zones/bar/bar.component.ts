@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
       useFactory: BarFactory,
       deps: [HttpClient, Injector],
     },
+    { provide: BebidasService, useExisting: BarService },
   ],
   templateUrl: "./bar.component.html",
 })
@@ -20,6 +21,7 @@ export class BarComponent implements OnInit {
   public tokenByString!: string;
   public tokenByInjectionToken!: string;
   public tokenByUseFactoryInjection!: string;
+  public bebidasByUseExisting!: string;
 
   constructor(
     private barService: BarService,
@@ -34,5 +36,7 @@ export class BarComponent implements OnInit {
     this.tokenByInjectionToken = this.zonesConfigByInjectionToken.token;
 
     this.tokenByUseFactoryInjection = this.barService.obterUnidade();
+
+    this.bebidasByUseExisting = this.bebidasService.obterBebidas();
   }
 }
