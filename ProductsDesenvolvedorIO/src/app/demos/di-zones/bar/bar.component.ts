@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: "app-bar",
   providers: [
-    { provide: BarService, useClass: BarServiceMock },
+    // { provide: BarService, useClass: BarServiceMock },
     {
       provide: BarService,
       useFactory: BarFactory,
@@ -66,7 +66,7 @@ export class BarComponent implements OnInit {
       });
     });
   }
-  
+
   _increaseProgress(doneCallback: () => void) {
     this.progress += 1;
     console.log(`Current progress: ${this.progress}%`);
