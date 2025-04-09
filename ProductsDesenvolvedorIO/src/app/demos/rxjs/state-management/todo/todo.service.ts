@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TodoTask } from '../../../../interfaces/todo-task.interface';
+import { environment } from '../../../../../../environment';
 
-import { Task } from './task';
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TasksService {
+  private baseUrl: string = `${environment.gatewayUrl}/todo-tasks`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getTodoList$: Observable<Task[]> = this.http
-    .get<Task[]>('http://localhost:3000/todolist');
-
-  /* getToDoList(): Observable<Task[]> {
-    return this.http
-      .get<Task[]>('http://localhost:3000/todolist');
-  } */
+  getToDoList(): Observable<TodoTask[]> {
+    return this.http.get<TodoTask[]>(this.baseUrl);
+  }
 }
