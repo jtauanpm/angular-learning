@@ -8,6 +8,7 @@ import { NotFoundComponent } from './navigation/not-found/not-found.component';
 import { AuthGuardCanActivate, AuthGuardCanMatch, CadastroGuardCanDeactivate } from './services/app.guard';
 import { MoviesComponent } from './demos/pipes/movies/movies.component';
 import { BarComponent } from './demos/di-zones/bar/bar.component';
+import { TodoComponent } from './demos/rxjs/state-management/todo/todo.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "about", component: AboutComponent },
   { path: "rxjs", component: RXJSComponent },
+  { path: "todo", component: TodoComponent },
   { path: "movies", component: MoviesComponent },
   { path: "bar-di-zones", component: BarComponent },
   {
