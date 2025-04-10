@@ -1,0 +1,18 @@
+<div class="task-list">
+    <h3>
+        <ng-content></ng-content>
+    </h3>
+
+    <table class="table table-striped">
+        <tbody>
+            @for (item of todoList(); track item.id) {
+                <tr>
+                    <td>
+                        <span>{{ item.name }}</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
