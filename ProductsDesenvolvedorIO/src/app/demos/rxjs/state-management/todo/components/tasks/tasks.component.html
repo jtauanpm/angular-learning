@@ -1,0 +1,9 @@
+@let todoList = (todolist$ | async);
+
+@if (todoList) {
+  <div class="tasks">
+    <todo-list [todoList]="todoList">
+      Tarefas
+    </todo-list>
+  </div>
+}
