@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
 
 @Component({
@@ -14,11 +14,11 @@ import { Product } from '../../interfaces/product.interface';
   `,
 })
 export class ProductPromotionalCountComponent {
-  @Input() products!: Product[];
+  products = input.required<Product[]>();
 
   countPromotionalProducts(): number {
-    if (!this.products) return 0;
+    if (!this.products()) return 0;
 
-    return this.products.filter((product) => product.promotional).length;
+    return this.products().filter((product) => product.promotional).length;
   }
 }

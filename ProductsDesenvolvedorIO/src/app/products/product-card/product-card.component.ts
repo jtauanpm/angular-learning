@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../interfaces/product.interface';
 
@@ -9,10 +9,10 @@ import { Product } from '../../interfaces/product.interface';
   templateUrl: "./product-card.component.html",
 })
 export class ProductCardComponent {
-  @Input() product!: Product;
-  @Output() status: EventEmitter<Product> = new EventEmitter();
+  product = input.required<Product>();
+  status = output<Product>();
 
   emitProduct(){
-    this.status.emit(this.product);
+    this.status.emit(this.product());
   }
 }
