@@ -1,31 +1,31 @@
 <div style="padding-bottom: 30px;">
     <div class="card h-100">
-        <a class="text-decoration-none" [routerLink]="['/products/detail', product.id]">
+        <a class="text-decoration-none" [routerLink]="['/products/detail', product().id]">
             <div style="align-content:center;">
-                <img src="/assets/{{ product.image }}" height="164px" width="253px" alt="{{product.image}}">
+                <img src="/assets/{{ product().image }}" height="164px" width="253px" alt="{{product().image}}">
             </div>
         </a>
         <h4 class="card-title">{{ product.name | titlecase }}</h4>
         
-        <div [ngSwitch]="product.promotional">
+        <div [ngSwitch]="product().promotional">
             <p *ngSwitchCase="true">Promoção!</p>
             <p *ngSwitchCase="false">Por apenas:</p>
             <ng-content selector=".promotional-message"></ng-content>
         </div>
 
         <div class="card-body">
-            @if (product.promotional) {
+            @if (product().promotional) {
                 <div>
                     <h4 class="card-text">De:
                         <small>
-                            <del>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del>
+                            <del>{{ product().value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</del>
                         </small>
-                        Por: {{ product.promotionalValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+                        Por: {{ product().promotionalValue | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
                     </h4>
                 </div>
             }@else {
                 <div>
-                    <h4>{{ product.value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h4>
+                    <h4>{{ product().value | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h4>
                 </div>
             }
             
@@ -33,7 +33,7 @@
 
         <div class="card-footer">
             <a (click)="emitProduct()"
-                [ngClass]="product.promotional ? 
+                [ngClass]="product().promotional ? 
                 'btn btn-success' : 'btn btn-danger'">
                  Promotional
             </a>
