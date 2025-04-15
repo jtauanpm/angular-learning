@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { TodoTask } from '../../../../../../interfaces/todo-task.interface';
+import { Task } from '../../../../../../interfaces/task.interface';
 
 @Component({
   selector: 'todo-list',
@@ -7,5 +7,5 @@ import { TodoTask } from '../../../../../../interfaces/todo-task.interface';
   styleUrl: './todo-list.component.css'  
 })
 export class ToDoListComponent {
-  public todoList = input.required<TodoTask[]>();
+  public todoList = input.required<Task[]>();
 }

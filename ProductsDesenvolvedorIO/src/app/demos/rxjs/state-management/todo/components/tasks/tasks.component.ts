@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { TasksService } from '../../todo.service';
 import { ToDoListComponent } from '../todo-list/todo-list.component';
 import { CommonModule } from '@angular/common';
-import { TodoTask } from '../../../../../../interfaces/todo-task.interface';
+import { Task } from '../../../../../../interfaces/task.interface';
 
 @Component({
   selector: "tasks",
@@ -15,7 +15,7 @@ import { TodoTask } from '../../../../../../interfaces/todo-task.interface';
   templateUrl: "./tasks.component.html",
 })
 export class TasksComponent implements OnInit {
-  todolist$!: Observable<TodoTask[]>;
+  todolist$!: Observable<Task[]>;
 
   constructor(private taskService: TasksService) {}
 
