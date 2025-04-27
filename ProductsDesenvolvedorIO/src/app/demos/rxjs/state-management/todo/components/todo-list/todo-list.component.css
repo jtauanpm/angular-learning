@@ -4,6 +4,10 @@
     border-radius: 4px;
 }
 
+.task-list td {
+    position: relative;
+}
+
 .task-list h3 {
     background: #552075;
     color: #fff;
@@ -18,7 +22,7 @@
     position: absolute;
     right: 20px;
     cursor: pointer;
-    background: url(/assets/parar_ativo.png) no-repeat 0 0;
+    background: url(/assets/buttons/parar_ativo.png) no-repeat 0 0;
     background-size: 20px 20px;
 }
 
@@ -28,7 +32,7 @@
     position: absolute;
     right: 20px;
     cursor: pointer;
-    background: url(/assets/iniciar_ativo.png) no-repeat 0 0;
+    background: url(/assets/buttons/iniciar_ativo.png) no-repeat 0 0;
     background-size: 20px 20px;
 }
 
@@ -38,7 +42,7 @@
     position: absolute;
     right: 50px;
     cursor: pointer;
-    background: url(/assets/retroceder_ativo.png) no-repeat 0 0;
+    background: url(/assets/buttons/retroceder_ativo.png) no-repeat 0 0;
     background-size: 20px 20px;
 }
 

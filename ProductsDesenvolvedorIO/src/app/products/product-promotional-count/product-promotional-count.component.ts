@@ -8,7 +8,7 @@ import { Product } from '../../interfaces/product.interface';
     <div>
       <div>
         Quantidade de produtos em promoção: {{ countPromotionalProducts() }} de
-        um total de {{ products.length }}
+        um total de {{ products().length }}
       </div>
     </div>
   `,

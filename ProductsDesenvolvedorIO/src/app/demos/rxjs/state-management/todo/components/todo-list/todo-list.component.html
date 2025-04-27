@@ -9,10 +9,21 @@
                 <tr>
                     <td>
                         <span>{{ item.nome }}</span>
+
+                        @if (!item.finalizado && item.iniciado) {
+                            <span class="task-list__finalizado"></span>
+                        }
+
+                        @if (!item.finalizado && !item.iniciado) {
+                            <span class="task-list__iniciado"></span>
+                        }
+
+                        @if ((item.finalizado && !item.iniciado) || (!item.finalizado && item.iniciado)) {
+                            <span class="task-list__retroceder"></span>
+                        }
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-
 </div>
