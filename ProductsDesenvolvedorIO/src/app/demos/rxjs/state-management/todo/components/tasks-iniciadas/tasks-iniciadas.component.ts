@@ -7,18 +7,24 @@ import { ToDoListComponent } from '../todo-list/todo-list.component';
 import { Store } from '../../todo.store';
 
 @Component({
-  selector: 'tasks-iniciadas',
+  selector: "tasks-iniciadas",
   imports: [CommonModule, ToDoListComponent],
-  templateUrl: './tasks-iniciadas.component.html'
+  templateUrl: "./tasks-iniciadas.component.html",
 })
 export class TasksIniciadasComponent implements OnInit {
-
   iniciados$!: Observable<any[]>;
 
   constructor(private tasksService: TasksService, private store: Store) {}
 
   ngOnInit() {
-    this.iniciados$ = this.store.getTodoList()
-    .pipe(map(todolist => todolist.filter(task => task.iniciado && !task.finalizado)));
+    this.iniciados$ = this.store.getTodoList().pipe(
+      map((todolist) => {
+        return todolist.filter((task) => task.iniciado && !task.finalizado);
+      })
+    );
+  }
+
+  onToggle(event: any) {
+    this.tasksService.toggle(event);
   }
 }
