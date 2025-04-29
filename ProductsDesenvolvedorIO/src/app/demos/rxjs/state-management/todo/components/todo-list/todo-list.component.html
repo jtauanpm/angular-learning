@@ -11,15 +11,19 @@
                         <span>{{ item.nome }}</span>
 
                         @if (!item.finalizado && item.iniciado) {
-                            <span class="task-list__finalizado"></span>
+                            <span class="task-list__finalizado" (click)="toggleItem($index, 'finalizar')"></span>
                         }
 
                         @if (!item.finalizado && !item.iniciado) {
-                            <span class="task-list__iniciado"></span>
+                            <span class="task-list__iniciado" (click)="toggleItem($index, 'iniciar')"></span>
                         }
 
-                        @if ((item.finalizado && !item.iniciado) || (!item.finalizado && item.iniciado)) {
-                            <span class="task-list__retroceder"></span>
+                        @if (item.finalizado && !item.iniciado) {
+                            <span class="task-list__retroceder" (click)="toggleItem($index, 'retomar')"></span>
+                        }
+
+                        @if(!item.finalizado && item.iniciado){
+                            <span class="task-list__retroceder" (click)="toggleItem($index, 'cancelar')"></span>
                         }
                     </td>
                 </tr>
