@@ -2,7 +2,7 @@
 
 @if (todoList) {
   <div class="tasks">
-    <todo-list [todoList]="todoList">
+    <todo-list [todoList]="todoList" (toggle)="onToggle($event)">
       Finalizadas
     </todo-list>
   </div>
