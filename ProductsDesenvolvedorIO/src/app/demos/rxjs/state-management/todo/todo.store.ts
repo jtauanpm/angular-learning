@@ -3,11 +3,11 @@ import { Task } from "../../../../interfaces/task.interface";
 import { Injectable } from "@angular/core";
 
 export interface State {
-    todolist: Task[]
+  todolist: Task[]
 }
 
 const state: State = {
-    todolist: []
+  todolist: []
 }
 
 @Injectable({ providedIn: "root" })
