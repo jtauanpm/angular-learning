@@ -3,6 +3,6 @@ export interface Product {
     name: string;
     value: number;
     promotional: boolean;
-    promotionalValue: string;
+    promotionalValue: number;
     image: string;
 };
