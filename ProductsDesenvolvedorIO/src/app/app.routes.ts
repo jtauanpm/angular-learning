@@ -9,6 +9,7 @@ import { AuthGuardCanActivate, AuthGuardCanMatch, CadastroGuardCanDeactivate } f
 import { MoviesComponent } from './demos/pipes/movies/movies.component';
 import { BarComponent } from './demos/di-zones/bar/bar.component';
 import { TodoComponent } from './demos/rxjs/state-management/todo/todo.component';
+import { ContadorComponent } from './demos/contador/contador.component';
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: "about", component: AboutComponent },
   { path: "rxjs", component: RXJSComponent },
   { path: "todo", component: TodoComponent },
+  { path: "counter", component: ContadorComponent },
   { path: "movies", component: MoviesComponent },
   { path: "bar-di-zones", component: BarComponent },
   {
