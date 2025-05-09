@@ -41,8 +41,6 @@ describe('TasksService', () => {
         service.getToDoList()
             .subscribe((result) => {
                 expect(result.length).toBe(1);
-                console.log(result);
-                console.log(todolist);
 
                 expect(result).toEqual(todolist);
             });
