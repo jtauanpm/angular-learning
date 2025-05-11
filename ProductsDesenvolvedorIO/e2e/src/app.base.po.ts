@@ -26,6 +26,10 @@ export abstract class AppBasePage {
     await this.page.click(`text=${link}`);
   }
 
+  obterElementoPorFormControl(formControlName: string): Locator {
+    return this.page.locator(`[formControlName="${formControlName}"]`);
+  }
+
   obterElementoXpath(xpath: string): Locator {
     return this.page.locator(`xpath=${xpath}`);
   }
