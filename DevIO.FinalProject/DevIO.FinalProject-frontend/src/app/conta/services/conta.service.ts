@@ -13,7 +13,7 @@ export class ContaService extends BaseService {
     registrarUsuario(usuario: Usuario): Observable<Usuario> {
         return this.httpClient
         .post<Usuario>(`${this.UrlServiceV1}/nova-conta`, 
-            usuario, { headers: this.obterHeaders() }
+            usuario, this.obterHeaders()
         )
         .pipe(
             map(this.extractData),
@@ -24,7 +24,7 @@ export class ContaService extends BaseService {
     login(usuario: Usuario): Observable<Usuario> {
         return this.httpClient
         .post<Usuario>(`${this.UrlServiceV1}/entrar`, 
-            usuario, { headers: this.obterHeaders() }
+            usuario, this.obterHeaders()
         )
         .pipe(
             map(this.extractData),

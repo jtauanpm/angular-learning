@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { throwError } from "rxjs";
 import { LocalStorageUtils } from "../utils/local-storage";
 import { environment } from "../../environments/environment";
@@ -9,7 +9,18 @@ export class BaseService {
 
     protected obterHeaders() {
         return {
-            'Content-Type': 'application/json'
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }
+    }
+
+    protected obterAuthHeaderJson() {
+        return {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.localstorage.obterTokenUsuario()}`
+            })
         }
     }
 
