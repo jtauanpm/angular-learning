@@ -6,7 +6,7 @@ import { catchError, map } from "rxjs/operators";
 
 import { Fornecedor } from '../models/fornecedor.model';
 import { BaseService } from "../../services/base-api.service";
-import { CepConsulta } from "../models/endereco.model";
+import { CepConsulta, Endereco } from "../models/endereco.model";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,8 @@ export class FornecedorService extends BaseService {
 
     fornecedor!: Fornecedor;
 
-    constructor(private http: HttpClient) { super() 
+    constructor(private http: HttpClient) {
+        super();
     
         this.fornecedor = {
             nome: "Teste Fake",
@@ -47,7 +48,11 @@ export class FornecedorService extends BaseService {
     }
 
     atualizarFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
-        return new Observable<Fornecedor>();
+        return this.http
+        .put<Fornecedor>(`${this.UrlServiceV1}/fornecedores/${fornecedor.id}`, fornecedor, super.obterAuthHeaderJson())
+        .pipe(
+            map(super.extractData),
+            catchError(super.serviceError));
     }
 
     excluirFornecedor(id: string): Observable<Fornecedor> {
@@ -58,5 +63,12 @@ export class FornecedorService extends BaseService {
         return this.http
             .get<CepConsulta>(`https://viacep.com.br/ws/${cep}/json/`)
             .pipe(catchError(super.serviceError));
+    }
+
+    atualizarEndereco(endereco: Endereco): Observable<Endereco> {
+        return this.http.put<Endereco>(`${this.UrlServiceV1}/fornecedores/endereco/${endereco.id}`, endereco, super.obterAuthHeaderJson())
+        .pipe(
+            map(super.extractData),
+            catchError(super.serviceError));
     }
 }
