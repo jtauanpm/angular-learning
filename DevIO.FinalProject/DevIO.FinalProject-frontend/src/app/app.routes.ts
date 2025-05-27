@@ -11,5 +11,11 @@ export const routes: Routes = [
             import("./conta/conta.route")
             .then(routes => routes.contaRouterConfig)
     },
+    {
+        path: "fornecedores",
+        loadChildren: () =>
+            import("./fornecedor/fornecedor.route")
+            .then(routes => routes.fornecedorRouterConfig)
+    },
     { path: '**', component: NotFoundComponent }
 ];
