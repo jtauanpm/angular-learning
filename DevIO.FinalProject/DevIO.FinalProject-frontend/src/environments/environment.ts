@@ -1,3 +1,5 @@
 export const environment = {
-    gatewayUrl: ""
+    production: false,
+    gatewayUrl: "",
+    googleMapsApiKey: ''
 };
