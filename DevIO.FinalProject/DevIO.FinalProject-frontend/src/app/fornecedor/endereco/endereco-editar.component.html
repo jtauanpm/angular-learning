@@ -1,0 +1,112 @@
+<form (ngSubmit)="editarEndereco()" [formGroup]="enderecoForm">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Atualizar Endereço</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="fecharModal()"></button>
+    </div>
+    
+    <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="errors.length > 0">
+            <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+            <ul>
+                <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CEP</label>
+            <input #cepInput class="form-control" id="cep" type="text" placeholder="CEP (requerido)" 
+                (blur)="buscarCep(cepInput.value)" formControlName="cep" [mask]="'00000-000'" 
+                [ngClass]="{'is-invalid': displayMessage['cep'] }" />
+            <div class="invalid-feedback" *ngIf="displayMessage['cep']">
+                <span [innerHTML]="displayMessage['cep']"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Logradouro</label>
+            <input class="form-control" id="logradouro" type="text" placeholder="Logradouro (requerido)" 
+                formControlName="logradouro" [ngClass]="{'is-invalid': displayMessage['logradouro'] }" />
+            <div class="invalid-feedback" *ngIf="displayMessage['logradouro']">
+                <span [innerHTML]="displayMessage['logradouro']"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Número</label>
+            <input class="form-control" id="numero" type="text" placeholder="Número (requerido)" 
+                formControlName="numero" [ngClass]="{'is-invalid': displayMessage['numero'] }" />
+            <div class="invalid-feedback" *ngIf="displayMessage['numero']">
+                <span [innerHTML]="displayMessage['numero']"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Complemento</label>
+            <input class="form-control" id="complemento" type="text" placeholder="Complemento" 
+                formControlName="complemento" [ngClass]="{'is-invalid': displayMessage['complemento'] }" />
+            <div class="invalid-feedback" *ngIf="displayMessage['complemento']">
+                <span [innerHTML]="displayMessage['complemento']"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Bairro</label>
+            <input class="form-control" id="bairro" type="text" placeholder="Bairro (requerido)" 
+                formControlName="bairro" [ngClass]="{'is-invalid': displayMessage['bairro'] }" />
+            <div class="invalid-feedback" *ngIf="displayMessage['bairro']">
+                <span [innerHTML]="displayMessage['bairro']"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cidade</label>
+            <input class="form-control" id="cidade" type="text" placeholder="Cidade (requerido)" 
+                formControlName="cidade" [ngClass]="{'is-invalid': displayMessage['cidade'] }" />
+            <div class="invalid-feedback" *ngIf="displayMessage['cidade']">
+                <span [innerHTML]="displayMessage['cidade']"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <select class="form-select" id="estado" formControlName="estado" 
+                [ngClass]="{ 'is-invalid': displayMessage['estado'] }">
+                <option value="">Estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="displayMessage['estado']">
+                <span [innerHTML]="displayMessage['estado']"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Atualizar</button>
+    </div>
+</form> 
