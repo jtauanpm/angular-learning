@@ -20,7 +20,7 @@
                 {{ fornecedor.nome }}
             </td>
             <td>
-                {{fornecedor.documento }}
+                {{fornecedor.documento | documentoFormat:fornecedor.tipoFornecedor.toString() }}
             </td>
             <td>
                 <input [checked]="fornecedor.ativo" class="form-check-input" disabled type="checkbox">

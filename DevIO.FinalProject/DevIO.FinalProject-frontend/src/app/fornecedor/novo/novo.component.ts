@@ -14,6 +14,7 @@ import { CpfValidator } from '../../utils/cpf-validator';
 import { NgxMaskDirective } from 'ngx-mask';
 import { CnpjValidator } from '../../utils/cnpj-validator';
 import { CepConsulta } from '../models/endereco.model';
+import { DocumentoPipe } from '../../shared/pipes/documento.pipe';
 
 @Component({
   selector: 'app-novo',
@@ -23,7 +24,8 @@ import { CepConsulta } from '../models/endereco.model';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    DocumentoPipe
   ]
 })
 export class NovoComponent implements OnInit {

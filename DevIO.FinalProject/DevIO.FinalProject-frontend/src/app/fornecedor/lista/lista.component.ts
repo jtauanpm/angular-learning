@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Fornecedor } from '../models/fornecedor.model';
 import { FornecedorService } from '../services/fornecedor.service';
+import { DocumentoFormatPipe, DocumentoPipe } from 'src/app/shared/pipes/documento.pipe';
 
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    DocumentoFormatPipe
   ]
 })
 export class ListaComponent implements OnInit {
