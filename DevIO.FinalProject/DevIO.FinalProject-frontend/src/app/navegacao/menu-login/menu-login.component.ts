@@ -16,13 +16,12 @@ export class MenuLoginComponent {
   token: string | null = "";
   user: any;
   email: string = "";
-  localStorageUtils = new LocalStorageUtils();
   private router = inject(Router);
 
 
   usuarioLogado(): boolean {
-    this.token = this.localStorageUtils.obterTokenUsuario();
-    this.user = this.localStorageUtils.obterUsuario();
+    this.token = LocalStorageUtils.obterTokenUsuario();
+    this.user = LocalStorageUtils.obterUsuario();
 
     if (this.user) {
       this.email = this.user.email;
@@ -32,7 +31,7 @@ export class MenuLoginComponent {
   }
 
   logout() {
-    this.localStorageUtils.limparDadosLocaisUsuario();
+    LocalStorageUtils.limparDadosLocaisUsuario();
     this.router.navigate(['/home']);
   }
 }

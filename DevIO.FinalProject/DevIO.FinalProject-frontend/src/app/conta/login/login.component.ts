@@ -1,14 +1,15 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, viewChildren } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, ElementRef, inject, viewChildren } from '@angular/core';
+import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { fromEvent, merge, Observable } from 'rxjs';
 import { CustomValidators } from 'ngx-custom-validators';
+import { fromEvent, merge, Observable } from 'rxjs';
 
-import { ValidationMessages, GenericValidator, DisplayMessage } from '../../utils/generic-form-validation';
-import { ContaService } from '../services/conta.service';
 import { ToastrService } from 'ngx-toastr';
+import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
+import { LocalStorageUtils } from '../../utils/local-storage';
+import { ContaService } from '../services/conta.service';
 
 
 @Component({
@@ -84,7 +85,7 @@ export class LoginComponent {
     this.loginForm.reset();
     this.errors = [];
 
-    this.contaService.localstorage.salvarDadosLocaisUsuario(response);
+    LocalStorageUtils.salvarDadosLocaisUsuario(response);
 
     this.router.navigate(['/home']);
   }

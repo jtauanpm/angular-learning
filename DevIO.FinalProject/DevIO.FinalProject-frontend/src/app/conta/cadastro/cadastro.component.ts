@@ -1,15 +1,15 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, viewChildren } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, viewChildren } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { fromEvent, merge, Observable } from 'rxjs';
 import { CustomValidators } from 'ngx-custom-validators';
+import { fromEvent, merge, Observable } from 'rxjs';
 
-import { ValidationMessages, GenericValidator, DisplayMessage } from '../../utils/generic-form-validation';
-import { ContaService } from '../services/conta.service';
 import { ToastrService } from 'ngx-toastr';
-import { ContaGuard } from '../services/conta.guard';
+import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
+import { ContaService } from '../services/conta.service';
+import { LocalStorageUtils } from '../../utils/local-storage';
 
 @Component({
   selector: 'app-cadastro',
@@ -96,7 +96,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
     this.cadastroForm.reset();
     this.errors = [];
 
-    this.contaService.localstorage.salvarDadosLocaisUsuario(response);
+    LocalStorageUtils.salvarDadosLocaisUsuario(response);
     let toast = this.toastr.success('Registro realizado com sucesso!', 'Bem vindo!', { progressBar: true });
 
     if(toast) {

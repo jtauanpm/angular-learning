@@ -1,28 +1,28 @@
 export class LocalStorageUtils {
 
-    public obterUsuario(): any {
+    public static obterUsuario(): any {
         return JSON.parse(localStorage.getItem('devio.user') || '{}');
     }
 
-    public salvarDadosLocaisUsuario(response: any): void {
+    public static salvarDadosLocaisUsuario(response: any): void {
         this.salvarTokenUsuario(response.accessToken);
         this.salvarUsuario(response.userToken);
     }
 
-    public limparDadosLocaisUsuario(): void {
+    public static limparDadosLocaisUsuario(): void {
         localStorage.removeItem('devio.token');
         localStorage.removeItem('devio.user');
     }
 
-    public obterTokenUsuario(): string | null {
+    public static obterTokenUsuario(): string | null {
         return localStorage.getItem('devio.token');
     }
 
-    public salvarTokenUsuario(token: string): void {
+    public static salvarTokenUsuario(token: string): void {
         localStorage.setItem('devio.token', token);
     }
 
-    public salvarUsuario(user: any): void {
+    public static salvarUsuario(user: any): void {
         localStorage.setItem('devio.user', JSON.stringify(user));
     }
 }

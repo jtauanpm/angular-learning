@@ -4,7 +4,6 @@ import { LocalStorageUtils } from "../utils/local-storage";
 import { environment } from "../../environments/environment";
 
 export class BaseService {
-    public localstorage = new LocalStorageUtils();
     protected readonly UrlServiceV1: string = `${environment.gatewayUrl}/v1`;
 
     protected obterHeaders() {
@@ -19,7 +18,7 @@ export class BaseService {
         return {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.localstorage.obterTokenUsuario()}`
+                'Authorization': `Bearer ${LocalStorageUtils.obterTokenUsuario()}`
             })
         }
     }

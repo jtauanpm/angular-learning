@@ -7,9 +7,6 @@ import { LocalStorageUtils } from "../../utils/local-storage";
     providedIn: 'root'
 })
 export class ContaGuard implements CanDeactivate<CadastroComponent>, CanActivate {
-
-    localStorageUtils = new LocalStorageUtils();
-
     private router = inject(Router);
 
     canDeactivate(component: CadastroComponent): boolean {
@@ -19,7 +16,7 @@ export class ContaGuard implements CanDeactivate<CadastroComponent>, CanActivate
     }
 
     canActivate(): boolean {       
-        if(this.localStorageUtils.obterTokenUsuario()) {
+        if(LocalStorageUtils.obterTokenUsuario()) {
             this.router.navigate(['/home']);
         }
         return true;
