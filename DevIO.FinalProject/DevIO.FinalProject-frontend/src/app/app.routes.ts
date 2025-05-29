@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './navegacao/home/home.component';
 import { NotFoundComponent } from './navegacao/not-found/not-found.component';
+import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,5 +18,6 @@ export const routes: Routes = [
             import("./fornecedor/fornecedor.route")
             .then(routes => routes.fornecedorRouterConfig)
     },
+    { path: 'acesso-negado', component: AcessoNegadoComponent },
     { path: '**', component: NotFoundComponent }
 ];
