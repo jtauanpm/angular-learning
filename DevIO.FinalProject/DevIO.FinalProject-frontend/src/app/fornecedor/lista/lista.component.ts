@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Fornecedor } from '../models/fornecedor.model';
 import { FornecedorService } from '../services/fornecedor.service';
-import { DocumentoFormatPipe, DocumentoPipe } from 'src/app/shared/pipes/documento.pipe';
+import { DocumentoFormatPipe } from '../../shared/pipes/documento.pipe';
+import { catchError, first, tap } from 'rxjs';
 
 @Component({
   selector: 'app-lista',
@@ -23,8 +24,11 @@ export class ListaComponent implements OnInit {
 
   ngOnInit(): void {
     this.fornecedorService.obterTodos()
-      .subscribe(
-        fornecedores => this.fornecedores = fornecedores,
-        error => this.errorMessage);
+    .pipe(
+      first(),
+      tap(result => this.fornecedores = result), 
+      catchError(error => this.errorMessage)
+    )
+    .subscribe();
   }
 }
