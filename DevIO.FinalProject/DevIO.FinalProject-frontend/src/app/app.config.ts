@@ -1,19 +1,23 @@
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
 
-import { routes } from './app.routes';
-import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideNgxMask } from 'ngx-mask';
+import { provideToastr } from 'ngx-toastr';
+import { routes } from './app.routes';
+import { ErrorInterceptor } from './services/error.handler.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
     provideToastr(),
     provideAnimations(),
-    provideNgxMask()
+    provideNgxMask(),
+    provideHttpClient(
+      withInterceptorsFromDi()
+    ),
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ]
 };
