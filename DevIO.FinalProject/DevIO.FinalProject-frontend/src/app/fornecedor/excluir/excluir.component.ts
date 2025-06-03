@@ -14,7 +14,9 @@ import { CommonModule } from '@angular/common';
     RouterModule
   ]
 })
-export class ExcluirComponent implements OnInit {
+export class ExcluirComponent {
+  errors: any[] = [];
+
   private fornecedorService = inject(FornecedorService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -24,10 +26,6 @@ export class ExcluirComponent implements OnInit {
 
   constructor() {
     this.fornecedor.set(this.route.snapshot.data['fornecedor']);
-  }
-
-  ngOnInit() {
-    // ... rest of the code ...
   }
 
   excluir() {
@@ -50,6 +48,7 @@ export class ExcluirComponent implements OnInit {
   }
 
   processarFalha(fail: any) {
+    this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   }
 }
