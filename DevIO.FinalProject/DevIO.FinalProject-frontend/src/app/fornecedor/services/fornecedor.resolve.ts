@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class FornecedorResolve implements Resolve<Fornecedor> {
-    constructor(private fornecedorService: FornecedorService) {}
+    constructor(private fornecedorService: FornecedorService) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Fornecedor> {
         return this.fornecedorService.obterPorId(route.params['id']);
