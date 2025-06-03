@@ -15,7 +15,7 @@ export const fornecedorRouterConfig: Routes = [
         children: [
             { path: 'listar-todos', component: ListaComponent },
             {
-                path: 'adicionar-novo', component: NovoComponent, canActivate: [FornecedorGuard],
+                path: 'adicionar-novo', component: NovoComponent, canActivate: [FornecedorGuard], canDeactivate: [FornecedorGuard],
                 data: {
                     claim: {
                         nome: 'Fornecedor',
