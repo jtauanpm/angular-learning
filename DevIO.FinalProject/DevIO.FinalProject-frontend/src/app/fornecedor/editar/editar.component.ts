@@ -24,7 +24,6 @@ import { DocumentoPipe } from "../../shared/pipes/documento.pipe";
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,

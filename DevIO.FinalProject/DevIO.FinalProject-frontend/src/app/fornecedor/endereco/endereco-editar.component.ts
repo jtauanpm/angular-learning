@@ -12,7 +12,6 @@ import { FornecedorService } from '../services/fornecedor.service';
 @Component({
   selector: 'app-endereco-editar',
   templateUrl: './endereco-editar.component.html',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
