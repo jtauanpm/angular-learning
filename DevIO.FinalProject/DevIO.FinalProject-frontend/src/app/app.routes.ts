@@ -18,6 +18,12 @@ export const routes: Routes = [
             import("./fornecedor/fornecedor.route")
             .then(routes => routes.fornecedorRouterConfig)
     },
+    {
+        path: "produtos",
+        loadChildren: () =>
+            import("./produto/produto.route")
+            .then(routes => routes.produtoRouterConfig)
+    },
     { path: 'acesso-negado', component: AcessoNegadoComponent },
     { path: '**', component: NotFoundComponent }
 ];
