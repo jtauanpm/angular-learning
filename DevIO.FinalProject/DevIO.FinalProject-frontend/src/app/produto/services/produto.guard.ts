@@ -4,7 +4,7 @@ import { CanDeactivate, Router, CanActivate, ActivatedRouteSnapshot, RouterState
 import { NovoComponent } from '../novo/novo.component';
 import { LocalStorageUtils } from '../../utils/local-storage';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ProdutoGuard implements CanActivate, CanDeactivate<NovoComponent> {
     constructor(private router: Router){}
 
