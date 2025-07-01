@@ -49,7 +49,7 @@ export class ProdutoService extends BaseService {
 
     obterFornecedores(): Observable<Fornecedor[]> {
         return this.http
-            .get<Fornecedor[]>(this.UrlServiceV1 + "fornecedores")
+            .get<Fornecedor[]>(this.UrlServiceV1 + "/fornecedores")
             .pipe(catchError(super.serviceError));
     }
 }

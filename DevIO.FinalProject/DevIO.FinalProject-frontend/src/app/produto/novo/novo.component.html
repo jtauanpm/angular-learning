@@ -60,7 +60,7 @@
                 <div class="mb-3">
                     <label class="form-label">Valor</label>
                     <div>
-                        <input class="form-control" id="valor" type="text" placeholder="Valor (requerido)" formControlName="valor" mask="separator.2" thousandSeparator="." decimalMarker="," [ngClass]="{'is-invalid': displayMessage['valor'] }" />
+                        <input currencyMask class="form-control text-start" id="valor" type="text" placeholder="Valor (requerido)" formControlName="valor" [ngClass]="{'is-invalid': displayMessage['valor'] }" [currencyMask]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
                         <span class="text-danger" *ngIf="displayMessage['valor']">
                             <p [innerHTML]="displayMessage['valor']"></p>
                         </span>

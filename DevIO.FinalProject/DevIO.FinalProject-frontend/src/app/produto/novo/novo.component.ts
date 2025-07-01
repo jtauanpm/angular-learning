@@ -10,12 +10,12 @@ import { DisplayMessage, GenericValidator, ValidationMessages } from '../../util
 import { Fornecedor, Produto } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
 import { CommonModule } from '@angular/common';
-import { NgxMaskDirective } from 'ngx-mask';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-novo',
   templateUrl: './novo.component.html',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxCurrencyDirective]
 })
 export class NovoComponent implements OnInit {
   formInputElements = viewChildren(FormControlName, { read: ElementRef })
@@ -66,8 +66,10 @@ export class NovoComponent implements OnInit {
   ngOnInit(): void {
 
     this.produtoService.obterFornecedores()
-      .subscribe(
-        fornecedores => this.fornecedores = fornecedores);
+      .subscribe({
+        next: (fornecedores: Fornecedor[]) => this.fornecedores = fornecedores,
+        error: (error: any) => this.processarFalha(error)
+      });
 
     this.produtoForm = this.fb.group({
       fornecedorId: ['', [Validators.required]],
@@ -95,10 +97,10 @@ export class NovoComponent implements OnInit {
       this.formResult = JSON.stringify(this.produto);
 
       this.produtoService.novoProduto(this.produto)
-        .subscribe(
-          sucesso => { this.processarSucesso(sucesso) },
-          falha => { this.processarFalha(falha) }
-        );
+        .subscribe({
+          next: (sucesso: any) => { this.processarSucesso(sucesso) },
+          error: (falha: any) => { this.processarFalha(falha) }
+        });
 
       this.mudancasNaoSalvas = false;
     }
@@ -117,7 +119,7 @@ export class NovoComponent implements OnInit {
   }
 
   processarFalha(fail: any) {
-    this.errors = fail.error.errors;
+    this.errors = fail.error?.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   }  
 }
