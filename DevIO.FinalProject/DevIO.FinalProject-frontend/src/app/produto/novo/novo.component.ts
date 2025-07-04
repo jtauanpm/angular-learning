@@ -6,19 +6,31 @@ import { Observable, fromEvent, merge } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
 
+import { CommonModule } from '@angular/common';
+import { NgxCurrencyDirective } from 'ngx-currency';
+import { Dimensions, ImageCroppedEvent, ImageCropperComponent, ImageTransform } from 'ngx-image-cropper';
 import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
 import { Fornecedor, Produto } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
-import { CommonModule } from '@angular/common';
-import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-novo',
   templateUrl: './novo.component.html',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxCurrencyDirective]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxCurrencyDirective, ImageCropperComponent]
 })
 export class NovoComponent implements OnInit {
   formInputElements = viewChildren(FormControlName, { read: ElementRef })
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  canvasRotation: number = 0;
+  rotation: number = 0;
+  scale: number = 1;
+  showCropper: boolean = false;
+  containWithinAspectRatio: boolean = false;
+  transform: ImageTransform = {};
+  imageUrl!: string;
+  imagemNome!: string;
 
   produto!: Produto;
   fornecedores!: Fornecedor[];
@@ -95,6 +107,8 @@ export class NovoComponent implements OnInit {
     if (this.produtoForm.dirty && this.produtoForm.valid) {
       this.produto = Object.assign({}, this.produto, this.produtoForm.value);
       this.formResult = JSON.stringify(this.produto);
+      console.log('var', this.croppedImage);
+      this.produto.imagemUpload = this.croppedImage.split(',')[1];
 
       this.produtoService.novoProduto(this.produto)
         .subscribe({
@@ -121,6 +135,28 @@ export class NovoComponent implements OnInit {
   processarFalha(fail: any) {
     this.errors = fail.error?.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
-  }  
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    this.imagemNome = event.currentTarget.files[0].name;
+  }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+
+  imageLoaded() {
+    this.showCropper = true;
+  }
+
+  cropperReady(sourceImageDimensions: Dimensions) {
+    console.log('Image ready', sourceImageDimensions);
+  }
+
+  loadImageFailed() {
+    this.errors.push('Não foi possível carregar a imagem:' + this.imagemNome);
+  }
+  
 }
 
