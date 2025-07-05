@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, inject, viewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CustomValidators } from 'ngx-custom-validators';
 import { fromEvent, merge, Observable } from 'rxjs';
@@ -39,14 +39,17 @@ export class LoginComponent {
   };
   
   private readonly genericValidator!: GenericValidator;
+  private returnUrl!: string;
   
   private fb = inject(FormBuilder);
   private contaService = inject(ContaService);
   private router = inject(Router);
   private toastr = inject(ToastrService);
+  private route = inject(ActivatedRoute);
   
   constructor() {
     this.genericValidator = new GenericValidator(this.validationMessages);
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
   }
 
   ngOnInit(): void {
@@ -87,7 +90,7 @@ export class LoginComponent {
 
     LocalStorageUtils.salvarDadosLocaisUsuario(response);
 
-    this.router.navigate(['/home']);
+    this.router.navigate(this.returnUrl ? [this.returnUrl] : ['/home']);
   }
 
   private processarErro(error: any) {
