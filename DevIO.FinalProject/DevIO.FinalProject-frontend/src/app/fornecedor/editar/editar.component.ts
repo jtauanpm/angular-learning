@@ -20,6 +20,7 @@ import { EnderecoEditarComponent } from "../endereco/endereco-editar.component";
 import { CepPipe } from "../../utils/cep.pipe";
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 import { DocumentoPipe } from "../../shared/pipes/documento.pipe";
+import { ListaProdutosComponent } from "../produtos/lista-produtos.component";
 
 @Component({
   selector: 'app-editar',
@@ -32,7 +33,8 @@ import { DocumentoPipe } from "../../shared/pipes/documento.pipe";
     RouterModule,
     CepPipe,
     NgxSpinnerModule,
-    DocumentoPipe
+    DocumentoPipe, 
+    ListaProdutosComponent
   ]
 })
 export class EditarComponent implements OnInit {
