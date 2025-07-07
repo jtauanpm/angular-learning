@@ -1,3 +1,4 @@
+import { Produto } from '../../produto/models/produto';
 import { Endereco } from './endereco.model';
 
 export interface Fornecedor {
@@ -7,5 +8,6 @@ export interface Fornecedor {
     ativo: boolean;
     tipoFornecedor: number;
     endereco: Endereco;
+    produtos: Produto[];
 }
 
