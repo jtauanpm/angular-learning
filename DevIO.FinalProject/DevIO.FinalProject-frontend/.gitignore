@@ -43,3 +43,10 @@ Thumbs.db
 
 # Environment files
 environment.local.ts
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
