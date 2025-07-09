@@ -1,37 +1,33 @@
-import { Component, ElementRef, OnInit, viewChildren } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, signal, viewChildren } from '@angular/core';
+import { FormBuilder, FormControlName, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Observable, fromEvent, merge } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
 
 import { CommonModule } from '@angular/common';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
-import { Fornecedor, Produto } from '../models/produto';
+import { NgxCurrencyDirective } from 'ngx-currency';
+import { environment } from '../../../environments/environment';
+import { GenericValidator } from '../../utils/generic-form-validation';
+import { ProdutoFormBaseComponent } from '../produto-form.base.component';
 import { ProdutoService } from '../services/produto.service';
 
 @Component({
   selector: 'app-editar',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxCurrencyDirective],
   templateUrl: './editar.component.html'
 })
-export class EditarComponent implements OnInit {
+export class EditarComponent extends ProdutoFormBaseComponent implements OnInit {
 
   formInputElements = viewChildren(FormControlName, { read: ElementRef });
+  imagesUrl: string = environment.imagesUrl;
 
-  produto: Produto;
-  fornecedores!: Fornecedor[];
-  errors: any[] = [];
-  produtoForm!: FormGroup;
-
-  validationMessages: ValidationMessages;
-  genericValidator: GenericValidator;
-  displayMessage: DisplayMessage = {};
+  imageBase64: any;
+  imagemPreview = signal<string>('');
+  imagemNome: string = '';
+  imagemOriginalSrc: string = '';
 
   formResult: string = '';
-
-  mudancasNaoSalvas!: boolean;
 
   constructor(private fb: FormBuilder,
     private produtoService: ProdutoService,
@@ -39,27 +35,7 @@ export class EditarComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService) {
 
-    this.validationMessages = {
-      fornecedorId: {
-        required: 'Escolha um fornecedor',
-      },
-      nome: {
-        required: 'Informe o Nome',
-        minlength: 'Mínimo de 2 caracteres',
-        maxlength: 'Máximo de 200 caracteres'
-      },
-      descricao: {
-        required: 'Informe a Descrição',
-        minlength: 'Mínimo de 2 caracteres',
-        maxlength: 'Máximo de 1000 caracteres'
-      },
-      imagem: {
-        required: 'Informe a Imagem',
-      },
-      valor: {
-        required: 'Informe o Valor',
-      }
-    };
+      super();
 
     this.genericValidator = new GenericValidator(this.validationMessages);
     this.produto = this.route.snapshot.data['produto'];
@@ -88,22 +64,23 @@ export class EditarComponent implements OnInit {
       ativo: this.produto.ativo,
       valor: this.produto.valor
     });
+
+    this.imagemOriginalSrc = `${this.imagesUrl}/${this.produto.imagem}`;
   }
 
   ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements()
-      .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
-
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidator.processarMensagens(this.produtoForm);
-      this.mudancasNaoSalvas = true;
-    });
+    super.configurarValidacaoFormulario([...this.formInputElements()]);
   }
 
   editarProduto() {
     if (this.produtoForm.dirty && this.produtoForm.valid) {
       this.produto = Object.assign({}, this.produto, this.produtoForm.value);
      
+      if (this.imageBase64) {
+        this.produto.imagemUpload = this.imageBase64;
+        this.produto.imagem = this.imagemNome;
+      }
+
      this.produtoService.atualizarProduto(this.produto)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
@@ -130,5 +107,20 @@ export class EditarComponent implements OnInit {
     this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   } 
+
+  upload(file: any) {
+    this.imagemNome = file[0].name;
+
+    var reader = new FileReader();
+    reader.onload = this.manipularReader.bind(this);
+    reader.readAsArrayBuffer(file[0]);
+  }
+
+  manipularReader(readerEvt: any) {
+    var binaryString = readerEvt.target.result;
+    this.imageBase64 = btoa(binaryString);
+    this.imagemPreview.set("data:image/jpeg;base64," + this.imageBase64);
+    console.log(this.imagemPreview());
+  }
 }
 

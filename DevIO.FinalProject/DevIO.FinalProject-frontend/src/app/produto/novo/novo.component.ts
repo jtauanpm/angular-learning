@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, viewChildren } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControlName, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable, fromEvent, merge } from 'rxjs';
@@ -9,8 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { Dimensions, ImageCroppedEvent, ImageCropperComponent, ImageTransform } from 'ngx-image-cropper';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
-import { Fornecedor, Produto } from '../models/produto';
+import { Fornecedor } from '../models/produto';
+import { ProdutoFormBaseComponent } from '../produto-form.base.component';
 import { ProdutoService } from '../services/produto.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { ProdutoService } from '../services/produto.service';
   templateUrl: './novo.component.html',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxCurrencyDirective, ImageCropperComponent]
 })
-export class NovoComponent implements OnInit {
+export class NovoComponent extends ProdutoFormBaseComponent implements OnInit {
   formInputElements = viewChildren(FormControlName, { read: ElementRef })
 
   imageChangedEvent: any = '';
@@ -32,48 +32,10 @@ export class NovoComponent implements OnInit {
   imageUrl!: string;
   imagemNome!: string;
 
-  produto!: Produto;
-  fornecedores!: Fornecedor[];
-  errors: any[] = [];
-  produtoForm!: FormGroup;
-
-  validationMessages: ValidationMessages;
-  genericValidator: GenericValidator;
-  displayMessage: DisplayMessage = {};
-
-  formResult: string = '';
-
-  mudancasNaoSalvas!: boolean;
-
   constructor(private fb: FormBuilder,
     private produtoService: ProdutoService,
     private router: Router,
-    private toastr: ToastrService) {
-
-    this.validationMessages = {
-      fornecedorId: {
-        required: 'Escolha um fornecedor',
-      },
-      nome: {
-        required: 'Informe o Nome',
-        minlength: 'Mínimo de 2 caracteres',
-        maxlength: 'Máximo de 200 caracteres'
-      },
-      descricao: {
-        required: 'Informe a Descrição',
-        minlength: 'Mínimo de 2 caracteres',
-        maxlength: 'Máximo de 1000 caracteres'
-      },
-      imagem: {
-        required: 'Informe a Imagem',
-      },
-      valor: {
-        required: 'Informe o Valor',
-      }
-    };
-
-    this.genericValidator = new GenericValidator(this.validationMessages);
-  }
+    private toastr: ToastrService) { super(); }
 
   ngOnInit(): void {
 
@@ -94,20 +56,12 @@ export class NovoComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements()
-      .map((formControl: ElementRef) => fromEvent(formControl.nativeElement, 'blur'));
-
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessage = this.genericValidator.processarMensagens(this.produtoForm);
-      this.mudancasNaoSalvas = true;
-    });
+    super.configurarValidacaoFormulario([...this.formInputElements()]);
   }
 
   adicionarProduto() {
     if (this.produtoForm.dirty && this.produtoForm.valid) {
       this.produto = Object.assign({}, this.produto, this.produtoForm.value);
-      this.formResult = JSON.stringify(this.produto);
-      console.log('var', this.croppedImage);
       this.produto.imagemUpload = this.croppedImage.split(',')[1];
 
       this.produtoService.novoProduto(this.produto)
