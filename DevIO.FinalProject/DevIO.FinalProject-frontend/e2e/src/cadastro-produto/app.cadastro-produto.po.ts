@@ -8,7 +8,6 @@ export class AppProdutoPage extends AppBasePage {
   valor: Locator;
   ativo: Locator;
   botaoProduto: Locator;
-  listaFornecedores: Locator;
   imagemInput: Locator;
 
   constructor(page: Page) {
@@ -20,12 +19,11 @@ export class AppProdutoPage extends AppBasePage {
     this.valor = page.locator('#valor');
     this.ativo = page.locator('#ativo');
     this.botaoProduto = page.locator('#cadastroProduto');
-    this.listaFornecedores = page.locator('option');
     this.imagemInput = page.locator('#imagem');
   }
 
   async navegarParaProdutos() {
-    await this.navegarViaUrl('/produtos');
+    await this.navegarViaUrl('/produtos/listar-todos');
   }
 
   async navegarParaNovoProduto() {
@@ -44,7 +42,10 @@ export class AppProdutoPage extends AppBasePage {
   }
 
   async selecionarFornecedor(index: number = 2) {
-    await this.listaFornecedores.nth(index).click();
+    await this.page.waitForSelector('#fornecedorId');
+    const options = await this.page.locator('#fornecedorId option').all();
+    const value = await options[index].getAttribute('value');
+    await this.page.selectOption('#fornecedorId', value);
   }
 
   async selecionarImagem() {

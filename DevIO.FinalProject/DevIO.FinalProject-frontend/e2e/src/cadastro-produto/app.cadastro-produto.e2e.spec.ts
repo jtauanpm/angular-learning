@@ -20,9 +20,10 @@ test.describe('Testes do formulário de cadastro', () => {
 
     await produtoPage.nome.fill('Produto Teste Automatizado');
     await produtoPage.descricao.fill('Produto \nTeste Automatizado');
-    await produtoPage.valor.fill('1234,50');
+    await produtoPage.valor.type('123');
     await produtoPage.selecionarImagem();
     await produtoPage.ativo.check();
+    await produtoPage.esperar(1000);
 
     await produtoPage.botaoProduto.click();
 

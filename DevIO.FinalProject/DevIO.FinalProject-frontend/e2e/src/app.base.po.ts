@@ -46,7 +46,6 @@ export abstract class AppBasePage {
     await this.page.fill('#password', 'Senha123.');
     await this.page.click('#Login');
 
-    // await this.page.waitForLoadState('networkidle');
-    this.esperar(1000);
+    await this.page.waitForLoadState('networkidle');
   }
 }
