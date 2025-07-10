@@ -4,6 +4,7 @@ import { ProdutoService } from '../services/produto.service';
 import { catchError, first, tap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-lista',
@@ -11,6 +12,8 @@ import { RouterModule } from '@angular/router';
   templateUrl: './lista.component.html'
 })
 export class ListaComponent implements OnInit {
+
+  public readonly imagesUrl: string = environment.imagesUrl;
 
   produtos!: Produto[];
   errorMessage!: string;
