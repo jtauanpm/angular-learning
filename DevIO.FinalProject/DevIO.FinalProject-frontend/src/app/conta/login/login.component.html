@@ -21,10 +21,10 @@
           required
           placeholder="E-mail (requerido)"
           formControlName="email"
-          [ngClass]="{ 'is-invalid': displayMessages['email'] }"
+          [ngClass]="{ 'is-invalid': displayMessage['email'] }"
         />
-        <div class="invalid-feedback d-block" *ngIf="displayMessages['email']">
-          <span [innerHTML]="displayMessages['email']"></span>
+        <div class="invalid-feedback d-block" *ngIf="displayMessage['email']">
+          <span [innerHTML]="displayMessage['email']"></span>
         </div>
       </div>
   
@@ -36,10 +36,10 @@
           type="password"
           placeholder="Senha (requerido)"
           formControlName="password"
-          [ngClass]="{ 'is-invalid': displayMessages['password'] }"
+          [ngClass]="{ 'is-invalid': displayMessage['password'] }"
         />
-        <div class="invalid-feedback d-block" *ngIf="displayMessages['password']">
-          <span [innerHTML]="displayMessages['password']"></span>
+        <div class="invalid-feedback d-block" *ngIf="displayMessage['password']">
+          <span [innerHTML]="displayMessage['password']"></span>
         </div>
       </div>
   

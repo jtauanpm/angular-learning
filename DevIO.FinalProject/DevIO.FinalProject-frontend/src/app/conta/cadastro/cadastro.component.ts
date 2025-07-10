@@ -4,12 +4,12 @@ import { AbstractControl, FormBuilder, FormControlName, FormGroup, FormsModule, 
 import { Router } from '@angular/router';
 
 import { CustomValidators } from 'ngx-custom-validators';
-import { fromEvent, merge, Observable } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
-import { ContaService } from '../services/conta.service';
+import { FormBaseComponent } from '../../base-components/form-base.component';
+import { DisplayMessage } from '../../utils/generic-form-validation';
 import { LocalStorageUtils } from '../../utils/local-storage';
+import { ContaService } from '../services/conta.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,30 +20,10 @@ import { LocalStorageUtils } from '../../utils/local-storage';
   ],
   templateUrl: './cadastro.component.html'
 })
-export class CadastroComponent implements OnInit, AfterViewInit {
+export class CadastroComponent extends FormBaseComponent implements OnInit, AfterViewInit {
   cadastroForm!: FormGroup;
-  displayMessages: DisplayMessage = {};
   errors: any[] = [];
-  mudancasNaoSalvas: boolean = false;
   formInputElements = viewChildren(FormControlName, { read: ElementRef });
-  
-  private readonly validationMessages: ValidationMessages = {
-    email: {
-      required: 'Informe o e-mail',
-      email: 'Email inválido'
-    },
-    password: {
-      required: 'Informe a senha',
-      rangeLength: 'A senha deve possuir entre 6 e 15 caracteres '
-    },
-    confirmPassword: {
-      required: 'Informe a senha novamente',
-      rangeLength: 'A senha deve possuir entre 6 e 15 caracteres',
-      equalTo: 'As senhas não conferem'
-    }
-  };
-  
-  private readonly genericValidator!: GenericValidator;
   
   private fb = inject(FormBuilder);
   private contaService = inject(ContaService);
@@ -51,7 +31,24 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   private toastr = inject(ToastrService);
   
   constructor() {
-    this.genericValidator = new GenericValidator(this.validationMessages);
+    super();
+    this.validationMessages = {
+      email: {
+        required: 'Informe o e-mail',
+        email: 'Email inválido'
+      },
+      password: {
+        required: 'Informe a senha',
+        rangeLength: 'A senha deve possuir entre 6 e 15 caracteres '
+      },
+      confirmPassword: {
+        required: 'Informe a senha novamente',
+        rangeLength: 'A senha deve possuir entre 6 e 15 caracteres',
+        equalTo: 'As senhas não conferem'
+      }
+    };
+
+    super.configurarMensagensValidacaoBase(this.validationMessages);
   }
 
   ngOnInit(): void {
@@ -73,13 +70,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements()
-      .map((formControl: ElementRef) => fromEvent (formControl.nativeElement, 'blur'));
-      
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessages = this.genericValidator.processarMensagens(this.cadastroForm);
-      this.mudancasNaoSalvas = true;
-    });
+    super.configurarValidacaoFormularioBase([...this.formInputElements()], this.cadastroForm);
   }
 
   private initForm() {

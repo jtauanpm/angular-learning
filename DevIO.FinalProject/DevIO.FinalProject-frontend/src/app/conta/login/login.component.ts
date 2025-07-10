@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, inject, viewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, viewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CustomValidators } from 'ngx-custom-validators';
-import { fromEvent, merge, Observable } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
-import { DisplayMessage, GenericValidator, ValidationMessages } from '../../utils/generic-form-validation';
+import { FormBaseComponent } from '../../base-components/form-base.component';
+import { DisplayMessage, GenericValidator } from '../../utils/generic-form-validation';
 import { LocalStorageUtils } from '../../utils/local-storage';
 import { ContaService } from '../services/conta.service';
 
@@ -21,24 +21,11 @@ import { ContaService } from '../services/conta.service';
   ],
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent extends FormBaseComponent implements OnInit, AfterViewInit{
   loginForm!: FormGroup;
-  displayMessages: DisplayMessage = {};
   errors: any[] = [];
   formInputElements = viewChildren(FormControlName, { read: ElementRef });
   
-  private readonly validationMessages: ValidationMessages = {
-    email: {
-      required: 'Informe o e-mail',
-      email: 'Email inválido'
-    },
-    password: {
-      required: 'Informe a senha',
-      rangeLength: 'A senha deve possuir entre 6 e 15 caracteres '
-    }
-  };
-  
-  private readonly genericValidator!: GenericValidator;
   private returnUrl!: string;
   
   private fb = inject(FormBuilder);
@@ -48,6 +35,19 @@ export class LoginComponent {
   private route = inject(ActivatedRoute);
   
   constructor() {
+    super();
+    this.validationMessages = {
+      email: {
+        required: 'Informe o e-mail',
+        email: 'Email inválido'
+      },
+      password: {
+        required: 'Informe a senha',
+        rangeLength: 'A senha deve possuir entre 6 e 15 caracteres '
+      }
+    };
+
+    super.configurarMensagensValidacaoBase(this.validationMessages);
     this.genericValidator = new GenericValidator(this.validationMessages);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
   }
@@ -69,12 +69,7 @@ export class LoginComponent {
   }
 
   ngAfterViewInit(): void {
-    let controlBlurs: Observable<any>[] = this.formInputElements()
-      .map((formControl: ElementRef) => fromEvent (formControl.nativeElement, 'blur'));
-      
-    merge(...controlBlurs).subscribe(() => {
-      this.displayMessages = this.genericValidator.processarMensagens(this.loginForm);
-    });
+    super.configurarValidacaoFormularioBase([...this.formInputElements()], this.loginForm);
   }
 
   private initForm() {
