@@ -1,6 +1,6 @@
 export const environment = {
-    production: false,
-    gatewayUrl: "",
-    googleMapsApiKey: '',
-    imagesUrl: "",
+    production: true,
+    gatewayUrl: "http://localhost:8080/api",
+    googleMapsApiKey: 'AIzaSyBfv4c4Ds-DdNt2S0CSI8lily6uQV2wEVY',
+    imagesUrl: "http://localhost:8080",
 };
