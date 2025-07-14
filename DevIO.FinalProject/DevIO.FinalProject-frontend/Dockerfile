@@ -1,20 +1,3 @@
-# # get source and run build
-# FROM node:latest AS ng-builder
-# # RUN mkdir -p /app
-# WORKDIR /app
-# COPY package.json /app
-# RUN npm install
-# COPY . .
-# RUN $(npm bin)/ng build --configuration=production
-
-# # deploy a NGINX server with Angular application
-# FROM nginx
-# COPY nginx.conf /etc/nginx/nginx.conf
-# COPY --from=ng-builder /app/dist/front-end /usr/share/nginx/html
-
-# EXPOSE 80
-
-
 # =========================================
 # Stage 1: Build the Angular Application
 # =========================================
