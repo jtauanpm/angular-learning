@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ProductsDesenvolvedorIO": {
+    "DevIO-ShowCase": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ProductsDesenvolvedorIO:build:production"
+              "buildTarget": "DevIO-ShowCase:build:production"
             },
             "development": {
-              "buildTarget": "ProductsDesenvolvedorIO:build:development"
+              "buildTarget": "DevIO-ShowCase:build:development"
             }
           },
           "defaultConfiguration": "development"

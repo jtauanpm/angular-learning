@@ -1,0 +1,14 @@
+@let todoList = (todolist$ | async);
+
+<div class="d-flex align-items-center gap-1">
+  <input type="text" class="form-control" [(ngModel)]="newTaskField">
+  <button class="btn btn-primary" (click)="addTask()">Adicionar</button>
+</div>
+
+@if (todoList) {
+  <div class="tasks">
+    <todo-list [todoList]="todoList" (toggle)="onToggle($event)">
+      Tarefas
+    </todo-list>
+  </div>
+}

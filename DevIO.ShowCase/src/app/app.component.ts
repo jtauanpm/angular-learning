@@ -11,5 +11,5 @@ import { FooterComponent } from "./navigation/footer/footer.component";
   styles: [],
 })
 export class AppComponent {
-  title = 'ProductsDesenvolvedorIO';
+  title = 'DevIO-ShowCase';
 }
