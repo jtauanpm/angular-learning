@@ -1,5 +1,9 @@
 # DevIO-ShowCase
 
+Este é um projeto angular destinado ao aprendizado de Angular seguindo o curso Desenvolvimento SPA com Angular - Desenvolvedor.io.
+
+Aqui estão casos de usos, exemplos de códigos de estudos variádos.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
 
 ## Development server
